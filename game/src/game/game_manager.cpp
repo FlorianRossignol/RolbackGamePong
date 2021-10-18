@@ -61,7 +61,7 @@ namespace game
         transformManager_.SetPosition(entity, position);
         transformManager_.SetScale(entity, core::Vec2f::one() * ballScale);
         transformManager_.SetRotation(entity, core::degree_t(0.0f));
-        rollbackManager_.SpawnBullet(playerNumber, entity, position, velocity);
+        rollbackManager_.SpawnBalle(playerNumber, entity, position, velocity);
         return entity;
     }
 
@@ -80,11 +80,12 @@ namespace game
             if (!entityManager_.HasComponent(entity, static_cast<core::EntityMask>(ComponentType::PLAYER_CHARACTER)))
                 continue;
             const auto& player = playerManager.GetComponent(entity);
-            if (player.health > 0)
+            //TODO Win conditionPong
+            /*if (player.health > 0)
             {
                 alivePlayer++;
                 winner = player.playerNumber;
-            }
+            }*/
         }
 
         return alivePlayer == 1 ? winner : INVALID_PLAYER;
@@ -265,7 +266,7 @@ namespace game
                 {
                     continue;
                 }
-                health += fmt::format("P{} health: {} ", playerNumber + 1, playerManager.GetComponent(playerEntity).health);
+                //health += fmt::format("P{} health: {} ", playerNumber + 1, playerManager.GetComponent(playerEntity).health);
             }
             textRenderer_.setFillColor(sf::Color::White);
             textRenderer_.setString(health);
@@ -296,7 +297,7 @@ namespace game
 
     }
 
-    core::Entity ClientGameManager::SpawnBullet(PlayerNumber playerNumber, core::Vec2f position, core::Vec2f velocity)
+    core::Entity ClientGameManager::SpawnBall(PlayerNumber playerNumber, core::Vec2f position, core::Vec2f velocity)
     {
         const auto entity = GameManager::SpawnBall(playerNumber, position, velocity);
 

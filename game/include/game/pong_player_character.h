@@ -12,7 +12,7 @@ namespace game
         float shootingTime = 0.0f;
         PlayerInput input = 0u;
         PlayerNumber playerNumber = INVALID_PLAYER;
-        short health = playerHealth;
+        //short health = playerHealth;
         float invincibilityTime = 0.0f;
     };
     class GameManager;

@@ -23,11 +23,11 @@ public:
     void AddComponent(Entity entity) override;
 };
 
-class RotationManager : public ComponentManager<degree_t, static_cast<std::uint32_t>(ComponentType::ROTATION)>
+/*class RotationManager : public ComponentManager<degree_t, static_cast<std::uint32_t>(ComponentType::ROTATION)>
 {
 public:
     using ComponentManager::ComponentManager;
-};
+};*/
 
 class TransformManager
 {
@@ -52,7 +52,7 @@ public:
 private:
     PositionManager positionManager_;
     ScaleManager scaleManager_;
-    RotationManager rotationManager_;
+    //RotationManager rotationManager_;
 };
 
 }

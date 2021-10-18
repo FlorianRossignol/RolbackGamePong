@@ -110,9 +110,10 @@ namespace game
 
         const auto pos = spawnPositions[playerNumber] * 3.0f;
         spawnPlayer->pos = ConvertToBinary(pos);
-        const auto rotation = spawnRotations[playerNumber];
-        spawnPlayer->angle = core::ConvertToBinary(rotation);
-        gameManager_.SpawnPlayer(playerNumber, pos, rotation);
+        //const auto rotation = spawnRotations[playerNumber];
+        //spawnPlayer->angle = core::ConvertToBinary(rotation);
+        //TODO
+        //gameManager_.SpawnPlayer(playerNumber, pos);
         SendReliablePacket(std::move(spawnPlayer));
     }
 }

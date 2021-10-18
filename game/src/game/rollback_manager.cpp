@@ -11,7 +11,7 @@ namespace game
         gameManager_(gameManager), entityManager_(entityManager),
         currentTransformManager_(entityManager),
         currentPhysicsManager_(entityManager), currentPlayerManager_(entityManager, currentPhysicsManager_, gameManager_),
-        currentBulletManager_(entityManager, gameManager),
+        currentBallManager_(entityManager, gameManager),
         lastValidatePhysicsManager_(entityManager),
         lastValidatePlayerManager_(entityManager, lastValidatePhysicsManager_, gameManager_), lastValidateBulletManager_(entityManager, gameManager)
     {
@@ -45,7 +45,7 @@ namespace game
         }
         
         //Revert the current game state to the last validated game state
-        currentBulletManager_.CopyAllComponents(lastValidateBulletManager_.GetAllComponents());
+        currentBallManager_.CopyAllComponents(lastValidateBulletManager_.GetAllComponents());
         currentPhysicsManager_.CopyAllComponents(lastValidatePhysicsManager_);
         currentPlayerManager_.CopyAllComponents(lastValidatePlayerManager_.GetAllComponents());
 
@@ -67,7 +67,7 @@ namespace game
                 currentPlayerManager_.SetComponent(playerEntity, playerCharacter);
             }
             //Simulate one frame of the game
-            currentBulletManager_.FixedUpdate(sf::seconds(GameManager::FixedPeriod));
+            currentBallManager_.FixedUpdate(sf::seconds(GameManager::FixedPeriod));
             currentPlayerManager_.FixedUpdate(sf::seconds(GameManager::FixedPeriod));
             currentPhysicsManager_.FixedUpdate(sf::seconds(GameManager::FixedPeriod));
         }
@@ -158,7 +158,7 @@ namespace game
             }
         }
         //We use the current game state as the temporary new validate game state
-        currentBulletManager_.CopyAllComponents(lastValidateBulletManager_.GetAllComponents());
+        currentBallManager_.CopyAllComponents(lastValidateBulletManager_.GetAllComponents());
         currentPhysicsManager_.CopyAllComponents(lastValidatePhysicsManager_);
         currentPlayerManager_.CopyAllComponents(lastValidatePlayerManager_.GetAllComponents());
 
@@ -176,7 +176,7 @@ namespace game
                 currentPlayerManager_.SetComponent(playerEntity, playerCharacter);
             }
             //We simulate one frame
-            currentBulletManager_.FixedUpdate(sf::seconds(GameManager::FixedPeriod));
+            currentBallManager_.FixedUpdate(sf::seconds(GameManager::FixedPeriod));
             currentPlayerManager_.FixedUpdate(sf::seconds(GameManager::FixedPeriod));
             currentPhysicsManager_.FixedUpdate(sf::seconds(GameManager::FixedPeriod));
         }
@@ -189,7 +189,7 @@ namespace game
             }
         }
         //Copy back the new validate game state to the last validated game state
-        lastValidateBulletManager_.CopyAllComponents(currentBulletManager_.GetAllComponents());
+        lastValidateBulletManager_.CopyAllComponents(currentBallManager_.GetAllComponents());
         lastValidatePlayerManager_.CopyAllComponents(currentPlayerManager_.GetAllComponents());
         lastValidatePhysicsManager_.CopyAllComponents(currentPhysicsManager_);
         lastValidateFrame_ = newValidateFrame;
@@ -297,7 +297,7 @@ namespace game
                 if (playerCharacter.invincibilityTime <= 0.0f)
                 {
                     core::LogDebug(fmt::format("Player {} is hit by bullet", playerCharacter.playerNumber));
-                    playerCharacter.health--;
+                    //playerCharacter.health--;
                     playerCharacter.invincibilityTime = playerInvincibilityPeriod;
                 }
                 currentPlayerManager_.SetComponent(playerEntity, playerCharacter);
@@ -307,7 +307,7 @@ namespace game
             entityManager_.HasComponent(entity2, static_cast<core::EntityMask>(ComponentType::BALL)))
         {
             const auto& player = currentPlayerManager_.GetComponent(entity1);
-            const auto& bullet = currentBulletManager_.GetComponent(entity2);
+            const auto& bullet = currentBallManager_.GetComponent(entity2);
             ManageCollision(player, entity1, bullet, entity2);
 
         }
@@ -315,12 +315,12 @@ namespace game
             entityManager_.HasComponent(entity1, static_cast<core::EntityMask>(ComponentType::BALL)))
         {
             const auto& player = currentPlayerManager_.GetComponent(entity2);
-            const auto& bullet = currentBulletManager_.GetComponent(entity1);
+            const auto& bullet = currentBallManager_.GetComponent(entity1);
             ManageCollision(player, entity2, bullet, entity1);
         }
     }
 
-    void RollbackManager::SpawnBullet(PlayerNumber playerNumber, core::Entity entity, core::Vec2f position, core::Vec2f velocity)
+    void RollbackManager::SpawnBalle(PlayerNumber playerNumber, core::Entity entity, core::Vec2f position, core::Vec2f velocity)
     {
         createdEntities_.push_back({ entity, testedFrame_ });
 
@@ -330,8 +330,9 @@ namespace game
         Box bulletBox;
         bulletBox.extends = core::Vec2f::one() * ballScale * 0.5f;
 
-        currentBulletManager_.AddComponent(entity);
-        currentBulletManager_.SetComponent(entity, { bulletPeriod, playerNumber });
+        currentBallManager_.AddComponent(entity);
+        //TODO
+        //currentBallManager_.SetComponent(entity, { bulletPeriod, playerNumber });
 
         currentPhysicsManager_.AddBody(entity);
         currentPhysicsManager_.SetBody(entity, bulletBody);

@@ -46,13 +46,13 @@ namespace game
             core::Vec2f(-1,0),
     };
 
-    const std::array<core::degree_t, std::max(4u, maxPlayerNmb)> spawnRotations
+    /*const std::array<core::degree_t, std::max(4u, maxPlayerNmb)> spawnRotations
     {
         core::degree_t(0.0f),
         core::degree_t(180.0f),
         core::degree_t(-90.0f),
         core::degree_t(90.0f)
-    };
+    };*/
 
     enum class ComponentType : core::EntityMask
     {
@@ -72,9 +72,9 @@ namespace game
             NONE = 0u,
             UP = 1u << 0u,
             DOWN = 1u << 1u,
-            LEFT = 1u << 2u,
-            RIGHT = 1u << 3u,
-            SHOOT = 1u << 4u,
+            //LEFT = 1u << 2u,
+            //RIGHT = 1u << 3u,
+            //SHOOT = 1u << 4u,
         };
     }
 }

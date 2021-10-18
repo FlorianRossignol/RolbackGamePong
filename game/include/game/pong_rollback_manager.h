@@ -51,7 +51,7 @@ class GameManager;
         [[nodiscard]] const core::TransformManager& GetTransformManager() const { return currentTransformManager_; }
         [[nodiscard]] const PlayerCharacterManager& GetPlayerCharacterManager() const { return currentPlayerManager_; }
         void SpawnPlayer(PlayerNumber playerNumber, core::Entity entity, core::Vec2f position, core::degree_t rotation);
-        void SpawnBullet(PlayerNumber playerNumber, core::Entity entity, core::Vec2f position, core::Vec2f velocity);
+        void SpawnBalle(PlayerNumber playerNumber, core::Entity entity, core::Vec2f position, core::Vec2f velocity);
         /**
          * \brief This function does not destroy the entity definitely, but puts the DESTROY flag
          */
@@ -68,7 +68,7 @@ class GameManager;
         core::TransformManager currentTransformManager_;
         PhysicsManager currentPhysicsManager_;
         PlayerCharacterManager currentPlayerManager_;
-        BallManager currentBulletManager_;
+        BallManager currentBallManager_;
         /**
          * Last Validate (confirm frame) Component Managers used for rollback
          */

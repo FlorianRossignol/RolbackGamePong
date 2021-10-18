@@ -8,6 +8,7 @@ namespace core
 {
     
 using Entity = std::uint32_t;
+//qui à quel component dans le manager
 using EntityMask = std::uint32_t;
 
 /**

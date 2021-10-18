@@ -12,8 +12,8 @@ void ScaleManager::AddComponent(Entity entity)
 
 TransformManager::TransformManager(EntityManager& entityManager) :
     positionManager_(entityManager),
-    scaleManager_(entityManager),
-    rotationManager_(entityManager)
+    scaleManager_(entityManager)
+    //rotationManager_(entityManager)
 {
 
 }
@@ -33,10 +33,10 @@ const std::vector<Vec2f>& TransformManager::GetAllScales() const
     return scaleManager_.GetAllComponents();
 }
 
-const std::vector<degree_t>& TransformManager::GetAllRotations() const
+/*const std::vector<degree_t>& TransformManager::GetAllRotations() const
 {
     return rotationManager_.GetAllComponents();
-}
+}*/
 
 void TransformManager::SetPosition(Entity entity, Vec2f position)
 {
@@ -53,27 +53,27 @@ void TransformManager::SetScale(Entity entity, Vec2f scale)
     scaleManager_.SetComponent(entity, scale);
 }
 
-degree_t TransformManager::GetRotation(Entity entity) const
+/*degree_t TransformManager::GetRotation(Entity entity) const
 {
     return rotationManager_.GetComponent(entity);
-}
+}*/
 
-void TransformManager::SetRotation(Entity entity, degree_t rotation)
+/*void TransformManager::SetRotation(Entity entity, degree_t rotation)
 {
     rotationManager_.SetComponent(entity, rotation);
-}
+}*/
 
 void TransformManager::AddComponent(Entity entity)
 {
     positionManager_.AddComponent(entity);
     scaleManager_.AddComponent(entity);
-    rotationManager_.AddComponent(entity);
+    //rotationManager_.AddComponent(entity);
 }
 
 void TransformManager::RemoveComponent(Entity entity)
 {
     positionManager_.AddComponent(entity);
     scaleManager_.AddComponent(entity);
-    rotationManager_.AddComponent(entity);
+    //rotationManager_.AddComponent(entity);
 }
 }
