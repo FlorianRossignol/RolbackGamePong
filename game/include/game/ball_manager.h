@@ -9,7 +9,7 @@ namespace game
     // structure de la boule 
     struct Ball
     {
-        std::vector<Ball> velocity = ( 0.0,0.5 );
+        core::Vec2f velocity = { 0.0,0.5 };
         //float remainingTime = 0.0f;
         //référence au nombre impossible de player
         PlayerNumber playerNumber = INVALID_PLAYER;
