@@ -2,7 +2,7 @@
 #include <memory>
 #include <SFML/System/Time.hpp>
 
-#include "server.h"
+#include "pong_server.h"
 
 namespace game
 {

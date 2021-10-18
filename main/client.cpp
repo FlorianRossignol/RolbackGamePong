@@ -2,7 +2,7 @@
 #include "engine/engine.h"
 #include "engine/system.h"
 #include "graphics/graphics.h"
-#include "network/network_client.h"
+#include "network/pong_network_client.h"
 
 namespace game
 {

@@ -1,5 +1,5 @@
-#include <game/player_character.h>
-#include <game/game_manager.h>
+#include <game/pong_player_character.h>
+#include <game/game_pong_manager.h>
 
 namespace game
 {
@@ -61,9 +61,9 @@ namespace game
                     const auto currentPlayerSpeed = playerBody.velocity.GetMagnitude();
                     const auto bulletVelocity = dir *
                         ((core::Vec2f::Dot(playerBody.velocity, dir) > 0.0f ? currentPlayerSpeed : 0.0f)
-                            + bulletSpeed);
+                            + balloriginalspeed);
                     const auto bulletPosition = playerBody.position + dir * 0.5f + playerBody.velocity * dt.asSeconds();
-                    gameManager_.SpawnBullet(playerCharacter.playerNumber,
+                    gameManager_.SpawnBall(playerCharacter.playerNumber,
                         bulletPosition,
                         bulletVelocity);
                     playerCharacter.shootingTime = 0.0f;

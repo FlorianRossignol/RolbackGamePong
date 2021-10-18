@@ -1,4 +1,4 @@
-#include <game/game_manager.h>
+#include <game/game_pong_manager.h>
 
 #include "utils/log.h"
 #include <fmt/format.h>
@@ -53,13 +53,13 @@ namespace game
         rollbackManager_.ValidateFrame(newValidateFrame);
     }
 
-    core::Entity GameManager::SpawnBullet(PlayerNumber playerNumber, core::Vec2f position, core::Vec2f velocity)
+    core::Entity GameManager::SpawnBall(PlayerNumber playerNumber, core::Vec2f position, core::Vec2f velocity)
     {
         const core::Entity entity = entityManager_.CreateEntity();
 
         transformManager_.AddComponent(entity);
         transformManager_.SetPosition(entity, position);
-        transformManager_.SetScale(entity, core::Vec2f::one() * bulletScale);
+        transformManager_.SetScale(entity, core::Vec2f::one() * ballScale);
         transformManager_.SetRotation(entity, core::degree_t(0.0f));
         rollbackManager_.SpawnBullet(playerNumber, entity, position, velocity);
         return entity;
@@ -298,7 +298,7 @@ namespace game
 
     core::Entity ClientGameManager::SpawnBullet(PlayerNumber playerNumber, core::Vec2f position, core::Vec2f velocity)
     {
-        const auto entity = GameManager::SpawnBullet(playerNumber, position, velocity);
+        const auto entity = GameManager::SpawnBall(playerNumber, position, velocity);
 
         spriteManager_.AddComponent(entity);
         spriteManager_.SetTexture(entity, bulletTexture_);

@@ -2,7 +2,7 @@
 #include <memory>
 #include <SFML/Network/Packet.hpp>
 
-#include "game/game_globals.h"
+#include "game/game_pong_globals.h"
 
 
 namespace game

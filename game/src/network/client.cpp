@@ -1,4 +1,4 @@
-#include <network/client.h>
+#include <network/pong_client.h>
 #include <utils/conversion.h>
 #include <cassert>
 

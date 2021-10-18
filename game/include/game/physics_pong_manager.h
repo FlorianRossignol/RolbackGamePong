@@ -1,5 +1,5 @@
 #pragma once
-#include "game_globals.h"
+#include "game_pong_globals.h"
 #include "engine/component.h"
 #include "engine/entity.h"
 #include "maths/angle.h"

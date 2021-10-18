@@ -1,4 +1,4 @@
-#include <game/physics_manager.h>
+#include <game/physics_pong_manager.h>
 
 namespace game
 {

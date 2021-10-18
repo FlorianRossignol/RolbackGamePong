@@ -2,9 +2,9 @@
 #include <SFML/Network/IpAddress.hpp>
 #include <SFML/Network/TcpListener.hpp>
 
-#include "network_client.h"
-#include "server.h"
-#include "game/game_globals.h"
+#include "pong_network_client.h"
+#include "pong_server.h"
+#include "game/game_pong_globals.h"
 
 namespace game
 {

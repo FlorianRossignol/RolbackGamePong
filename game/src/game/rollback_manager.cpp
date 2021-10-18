@@ -1,5 +1,5 @@
-#include <game/rollback_manager.h>
-#include <game/game_manager.h>
+#include <game/pong_rollback_manager.h>
+#include <game/game_pong_manager.h>
 #include <cassert>
 #include <utils/log.h>
 #include <fmt/format.h>
@@ -286,7 +286,7 @@ namespace game
 
     void RollbackManager::OnTrigger(core::Entity entity1, core::Entity entity2)
     {
-        std::function<void(const PlayerCharacter&, core::Entity, const Bullet&, core::Entity)> ManageCollision =
+        std::function<void(const PlayerCharacter&, core::Entity, const Ball&, core::Entity)> ManageCollision =
             [this](const auto& player, auto playerEntity, const auto& bullet, auto bulletEntity)
         {
             if (player.playerNumber != bullet.playerNumber)
@@ -304,7 +304,7 @@ namespace game
             }
         };
         if (entityManager_.HasComponent(entity1, static_cast<core::EntityMask>(ComponentType::PLAYER_CHARACTER)) &&
-            entityManager_.HasComponent(entity2, static_cast<core::EntityMask>(ComponentType::BULLET)))
+            entityManager_.HasComponent(entity2, static_cast<core::EntityMask>(ComponentType::BALL)))
         {
             const auto& player = currentPlayerManager_.GetComponent(entity1);
             const auto& bullet = currentBulletManager_.GetComponent(entity2);
@@ -312,7 +312,7 @@ namespace game
 
         }
         if (entityManager_.HasComponent(entity2, static_cast<core::EntityMask>(ComponentType::PLAYER_CHARACTER)) &&
-            entityManager_.HasComponent(entity1, static_cast<core::EntityMask>(ComponentType::BULLET)))
+            entityManager_.HasComponent(entity1, static_cast<core::EntityMask>(ComponentType::BALL)))
         {
             const auto& player = currentPlayerManager_.GetComponent(entity2);
             const auto& bullet = currentBulletManager_.GetComponent(entity1);
@@ -328,7 +328,7 @@ namespace game
         bulletBody.position = position;
         bulletBody.velocity = velocity;
         Box bulletBox;
-        bulletBox.extends = core::Vec2f::one() * bulletScale * 0.5f;
+        bulletBox.extends = core::Vec2f::one() * ballScale * 0.5f;
 
         currentBulletManager_.AddComponent(entity);
         currentBulletManager_.SetComponent(entity, { bulletPeriod, playerNumber });
@@ -340,7 +340,7 @@ namespace game
 
         currentTransformManager_.AddComponent(entity);
         currentTransformManager_.SetPosition(entity, position);
-        currentTransformManager_.SetScale(entity, core::Vec2f::one() * bulletScale);
+        currentTransformManager_.SetScale(entity, core::Vec2f::one() * ballScale);
         currentTransformManager_.SetRotation(entity, core::degree_t(0.0f));
     }
 

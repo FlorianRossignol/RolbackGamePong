@@ -1,6 +1,6 @@
 #include <engine/engine.h>
 
-#include "network/client_debug_app.h"
+#include "network/pong_client_debug_app.h"
 
 int main(int argc, char** argv)
 {

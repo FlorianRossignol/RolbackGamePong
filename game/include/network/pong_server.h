@@ -1,9 +1,9 @@
 #pragma once
 #include <memory>
 
-#include "packet_type.h"
+#include "pong_packet_type.h"
 #include "engine/system.h"
-#include "game/game_globals.h"
+#include "game/game_pong_globals.h"
 
 namespace game
 {

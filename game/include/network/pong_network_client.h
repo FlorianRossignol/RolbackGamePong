@@ -1,5 +1,5 @@
 #pragma once
-#include "client.h"
+#include "pong_client.h"
 #include <SFML/Network/TcpSocket.hpp>
 #include <SFML/Network/UdpSocket.hpp>
 

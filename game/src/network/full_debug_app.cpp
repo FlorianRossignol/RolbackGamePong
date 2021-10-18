@@ -1,4 +1,4 @@
-#include <network/full_debug_app.h>
+#include <network/pong_full_debug_app.h>
 
 #include "engine/globals.h"
 

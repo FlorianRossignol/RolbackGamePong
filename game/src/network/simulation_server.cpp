@@ -1,5 +1,5 @@
-#include <network/simulation_server.h>
-#include <network/simulation_client.h>
+#include <network/pong_simulation_server.h>
+#include <network/pong_simulation_client.h>
 #include <imgui.h>
 #include <maths/basic.h>
 #include <utils/conversion.h>

@@ -1,4 +1,4 @@
-#include <network/client_debug_app.h>
+#include <network/pong_client_debug_app.h>
 
 namespace game
 {

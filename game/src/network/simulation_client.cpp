@@ -1,7 +1,7 @@
-#include <network/simulation_client.h>
+#include <network/pong_simulation_client.h>
 #include <maths/basic.h>
 #include <imgui.h>
-#include <network/simulation_server.h>
+#include <network/pong_simulation_server.h>
 
 namespace game
 {

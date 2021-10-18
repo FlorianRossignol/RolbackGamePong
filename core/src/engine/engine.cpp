@@ -46,7 +46,7 @@ void Engine::RegisterDrawImGui(DrawImGuiInterface* drawImGuiInterface)
 
 void Engine::Init()
 {
-    window_ = std::make_unique<sf::RenderWindow>(sf::VideoMode(windowSize.x, windowSize.y), "Rollback Game");
+    window_ = std::make_unique<sf::RenderWindow>(sf::VideoMode(windowSize.x, windowSize.y), "Pong Rollback Game");
     ImGui::SFML::Init(*window_);
     for(auto& system : systems_)
     {

@@ -1,5 +1,5 @@
 #include <imgui.h>
-#include <network/network_client.h>
+#include <network/pong_network_client.h>
 
 #include "maths/basic.h"
 #include "utils/conversion.h"

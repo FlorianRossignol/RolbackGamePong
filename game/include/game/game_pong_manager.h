@@ -6,15 +6,15 @@
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Graphics/Text.hpp>
 
-#include "game_globals.h"
-#include "rollback_manager.h"
-#include "star_background.h"
+#include "game_pong_globals.h"
+#include "pong_rollback_manager.h"
+#include "pong_background.h"
 #include "engine/entity.h"
 #include "graphics/graphics.h"
 #include "graphics/sprite.h"
 #include "engine/system.h"
 #include "engine/transform.h"
-#include "network/packet_type.h"
+#include "network/pong_packet_type.h"
 
 namespace game
 {
@@ -29,7 +29,7 @@ namespace game
         GameManager();
         virtual ~GameManager() = default;
         virtual void SpawnPlayer(PlayerNumber playerNumber, core::Vec2f position, core::degree_t rotation);
-        virtual core::Entity SpawnBullet(PlayerNumber, core::Vec2f position, core::Vec2f velocity);
+        virtual core::Entity SpawnBall(PlayerNumber, core::Vec2f position, core::Vec2f velocity);
         virtual void DestroyBullet(core::Entity entity);
         [[nodiscard]] core::Entity GetEntityFromPlayerNumber(PlayerNumber playerNumber) const;
         [[nodiscard]] Frame GetCurrentFrame() const { return currentFrame_; }
@@ -74,7 +74,7 @@ namespace game
         void Draw(sf::RenderTarget& target) override;
         void SetClientPlayer(PlayerNumber clientPlayer);
         void SpawnPlayer(PlayerNumber playerNumber, core::Vec2f position, core::degree_t rotation) override;
-        core::Entity SpawnBullet(PlayerNumber playerNumber, core::Vec2f position, core::Vec2f velocity) override;
+        core::Entity SpawnBall(PlayerNumber playerNumber, core::Vec2f position, core::Vec2f velocity) override;
         void FixedUpdate();
         void SetPlayerInput(PlayerNumber playerNumber, std::uint8_t playerInput, std::uint32_t inputFrame) override;
         void DrawImGui() override;

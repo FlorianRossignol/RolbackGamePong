@@ -1,6 +1,6 @@
 #include <string>
 
-#include "network/network_server.h"
+#include "network/pong_network_server.h"
 
 int main(int argc, char** argv)
 {

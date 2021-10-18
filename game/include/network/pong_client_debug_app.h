@@ -2,10 +2,10 @@
 #include <SFML/Window/Event.hpp>
 #include <SFML/Graphics/RenderTexture.hpp>
 
-#include "client.h"
-#include "network_client.h"
+#include "pong_client.h"
+#include "pong_network_client.h"
 #include "engine/system.h"
-#include "game/game_globals.h"
+#include "game/game_pong_globals.h"
 #include "graphics/graphics.h"
 #include "maths/vec2.h"
 

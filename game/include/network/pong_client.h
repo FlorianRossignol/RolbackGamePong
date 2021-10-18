@@ -1,6 +1,6 @@
 #pragma once
-#include "packet_type.h"
-#include "game/game_manager.h"
+#include "pong_packet_type.h"
+#include "game/game_pong_manager.h"
 #include "graphics/graphics.h"
 
 namespace game

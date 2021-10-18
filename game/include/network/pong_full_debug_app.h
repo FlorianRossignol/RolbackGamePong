@@ -1,9 +1,9 @@
 #pragma once
-#include "client.h"
-#include "simulation_client.h"
-#include "simulation_server.h"
+#include "pong_client.h"
+#include "pong_simulation_client.h"
+#include "pong_simulation_server.h"
 #include "engine/system.h"
-#include "game/game_globals.h"
+#include "game/game_pong_globals.h"
 #include "graphics/graphics.h"
 #include <SFML/Graphics/RenderTexture.hpp>
 

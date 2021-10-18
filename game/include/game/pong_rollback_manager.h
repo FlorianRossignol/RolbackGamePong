@@ -1,11 +1,11 @@
 #pragma once
-#include "bullet_manager.h"
-#include "game_globals.h"
-#include "physics_manager.h"
-#include "player_character.h"
+#include "ball_manager.h"
+#include "game_pong_globals.h"
+#include "physics_pong_manager.h"
+#include "pong_player_character.h"
 #include "engine/entity.h"
 #include "engine/transform.h"
-#include "network/packet_type.h"
+#include "network/pong_packet_type.h"
 
 
 
@@ -21,7 +21,7 @@ class GameManager;
 
     struct DestroyedBullet
     {
-        Bullet bullet;
+        Ball bullet;
         Body body;
         Frame destroyedFrame = 0;
     };
@@ -68,13 +68,13 @@ class GameManager;
         core::TransformManager currentTransformManager_;
         PhysicsManager currentPhysicsManager_;
         PlayerCharacterManager currentPlayerManager_;
-        BulletManager currentBulletManager_;
+        BallManager currentBulletManager_;
         /**
          * Last Validate (confirm frame) Component Managers used for rollback
          */
         PhysicsManager lastValidatePhysicsManager_;
         PlayerCharacterManager lastValidatePlayerManager_;
-        BulletManager lastValidateBulletManager_;
+        BallManager lastValidateBulletManager_;
 
 
         Frame lastValidateFrame_ = 0; //Confirm frame
