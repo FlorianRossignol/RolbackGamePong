@@ -5,7 +5,7 @@
 
 namespace game
 {
-    void StarBackground::Init()
+    void PongBackground::Init()
     {
         vertexArray_ = sf::VertexArray(sf::Points, starCount);
 
@@ -19,7 +19,7 @@ namespace game
         }
     }
 
-    void StarBackground::Draw(sf::RenderTarget& window)
+    void PongBackground::Draw(sf::RenderTarget& window)
     {
         window.draw(vertexArray_);
     }

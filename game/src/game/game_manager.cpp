@@ -120,7 +120,7 @@ namespace game
             core::LogError("Could not load font");
         }
         textRenderer_.setFont(font_);
-        starBackground_.Init();
+        pongBackground_.Init();
     }
 
     void ClientGameManager::Update(sf::Time dt)
@@ -193,7 +193,7 @@ namespace game
         UpdateCameraView();
         target.setView(cameraView_);
 
-        starBackground_.Draw(target);
+        pongBackground_.Draw(target);
         spriteManager_.Draw(target);
 
         // Draw texts on screen

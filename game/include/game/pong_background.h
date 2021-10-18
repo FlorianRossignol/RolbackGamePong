@@ -11,7 +11,7 @@ class RenderTarget;
 namespace game
 {
 
-class StarBackground : public core::DrawInterface
+class PongBackground : public core::DrawInterface
 {
 public:
     void Init();

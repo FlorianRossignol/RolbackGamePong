@@ -9,8 +9,9 @@ namespace game
     // structure de la boule 
     struct Ball
     {
-        core::Vec2f velocity = { 0.0,0.5 };
-        float remainingTime = 0.0f;
+        core::Vec2f velocity = { 0.0f,0.5f };
+        core::Vec2f position = { 0.0f,0.0f };
+        //float remainingTime = 0.0f;
         //référence au nombre impossible de player
         PlayerNumber playerNumber = INVALID_PLAYER;
     };

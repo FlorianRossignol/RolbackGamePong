@@ -31,7 +31,7 @@ namespace core
         void SetWindowSize(sf::Vector2f windowSize) { windowSize_ = windowSize; }
         void Draw(sf::RenderTarget& window) override;
         void SetColor(Entity entity, sf::Color color);
-
+        
     protected:
         TransformManager& transformManager_;
         sf::Vector2f center_{};

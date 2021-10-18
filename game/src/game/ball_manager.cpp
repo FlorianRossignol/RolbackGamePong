@@ -13,12 +13,16 @@ namespace game
         {
             if (entityManager_.HasComponent(entity, static_cast<core::EntityMask>(ComponentType::BALL)))
             {
-                auto& ball = components_[entity];
+                /*auto& ball = components_[entity];
                 ball.remainingTime -= dt.asSeconds();
                 if (ball.remainingTime < 0.0f)
                 {
                     entityManager_.DestroyEntity(entity);
-                }
+                }*/
+                auto& ball = components_[entity];
+                
+                //ball.velocity = ball.velocity;
+                
             }
         }
     }

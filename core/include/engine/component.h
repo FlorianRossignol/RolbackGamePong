@@ -13,7 +13,7 @@ namespace core
         EMPTY = 1u,
         POSITION = 1u << 1u,
         SCALE = 1u << 2u,
-        //ROTATION = 1u << 3u,
+        ROTATION = 1u << 3u,
         TRANSFORM = POSITION | SCALE,
         SPRITE = 1u << 4u,
         BODY2D = 1u << 5u,

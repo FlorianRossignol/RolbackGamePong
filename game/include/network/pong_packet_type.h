@@ -12,7 +12,7 @@ namespace game
         JOIN = 0u,
         SPAWN_PLAYER,
         INPUT,
-        SPAWN_BULLET,
+        SPAWN_BALL,
         VALIDATE_STATE,
         START_GAME,
         JOIN_ACK,

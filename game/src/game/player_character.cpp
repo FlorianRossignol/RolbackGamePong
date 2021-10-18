@@ -48,13 +48,13 @@ namespace game
                 SetComponent(playerEntity, playerCharacter);
             }
             //Check if cannot shoot, and increase shootingTime
-            if (playerCharacter.shootingTime < playerShootingPeriod)
+            /*if (playerCharacter.shootingTime < playerShootingPeriod)
             {
                 playerCharacter.shootingTime += dt.asSeconds();
                 SetComponent(playerEntity, playerCharacter);
-            }
+            }*/
             //Shooting mechanism
-            if (playerCharacter.shootingTime >= playerShootingPeriod)
+            //if (playerCharacter.shootingTime >= playerShootingPeriod)
             {
                 /*if (input & PlayerInputEnum::PlayerInput::SHOOT)
                 {

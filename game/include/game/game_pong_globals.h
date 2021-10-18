@@ -61,6 +61,7 @@ namespace game
         ASTEROID = static_cast<core::EntityMask>(core::ComponentType::OTHER_TYPE) << 2u,
         PLAYER_INPUT = static_cast<core::EntityMask>(core::ComponentType::OTHER_TYPE) << 3u,
         DESTROYED = static_cast<core::EntityMask>(core::ComponentType::OTHER_TYPE) << 4u,
+        WALL = static_cast<core::EntityMask>(core::ComponentType::OTHER_TYPE) << 5u,
     };
 
     using PlayerInput = std::uint8_t;
