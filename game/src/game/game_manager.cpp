@@ -23,7 +23,6 @@ namespace game
         core::LogDebug("[GameManager] Spawning new player");
         const auto entity = entityManager_.CreateEntity();
         playerEntityMap_[playerNumber] = entity;
-
         transformManager_.AddComponent(entity);
         transformManager_.SetPosition(entity, position);
         transformManager_.SetRotation(entity, rotation);
