@@ -12,8 +12,8 @@ void ScaleManager::AddComponent(Entity entity)
 
 TransformManager::TransformManager(EntityManager& entityManager) :
     positionManager_(entityManager),
-    scaleManager_(entityManager)
-    //rotationManager_(entityManager)
+    scaleManager_(entityManager),
+    rotationManager_(entityManager)
 {
 
 }

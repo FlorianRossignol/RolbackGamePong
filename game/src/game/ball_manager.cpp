@@ -20,8 +20,6 @@ namespace game
                     entityManager_.DestroyEntity(entity);
                 }*/
                 auto& ball = components_[entity];
-                //ball.velocity = ball.velocity;
-                //ball.position = ball.velocity;
                 ball.velocity = ball.velocity * dt.asSeconds() + ball.position;
                 
             }

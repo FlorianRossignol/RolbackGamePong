@@ -322,22 +322,23 @@ namespace game
 
     void RollbackManager::SpawnBalle(PlayerNumber playerNumber, core::Entity entity, core::Vec2f position, core::Vec2f velocity)
     {
+        Ball ball;
         createdEntities_.push_back({ entity, testedFrame_ });
 
-        Body bulletBody;
-        bulletBody.position = position;
-        bulletBody.velocity = velocity;
-        Box bulletBox;
-        bulletBox.extends = core::Vec2f::one() * ballScale * 0.5f;
+        //Body bulletBody;
+        //bulletBody.position = position;
+        //bulletBody.velocity = velocity;
+        //Box bulletBox;
+       // bulletBox.extends = core::Vec2f::one() * ballScale * 0.5f;
 
         currentBallManager_.AddComponent(entity);
         //TODO
         //currentBallManager_.SetComponent(entity, { bulletPeriod, playerNumber });
-
-        currentPhysicsManager_.AddBody(entity);
-        currentPhysicsManager_.SetBody(entity, bulletBody);
-        currentPhysicsManager_.AddBox(entity);
-        currentPhysicsManager_.SetBox(entity, bulletBox);
+        
+        //currentPhysicsManager_.AddBody(entity);
+        //currentPhysicsManager_.SetBody(entity, bulletBody);
+        //currentPhysicsManager_.AddBox(entity);
+        //currentPhysicsManager_.SetBox(entity, bulletBox);
 
         currentTransformManager_.AddComponent(entity);
         currentTransformManager_.SetPosition(entity, position);

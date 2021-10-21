@@ -9,7 +9,7 @@ TEST(Angle, RadianToDegree)
 {
     core::radian_t angle{M_PI};
     core::degree_t angle2 = angle;
-
+    
     EXPECT_FLOAT_EQ(180.0f, angle2.value());
 }
 

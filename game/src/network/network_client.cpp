@@ -187,6 +187,7 @@ namespace game
         case sf::Socket::Disconnected:
             core::LogDebug("[Client] Error sending UDP to server, DISCONNECTED");
             break;
+         
         case sf::Socket::Error:
             core::LogDebug("[Client] Error sending UDP to server, ERROR");
             break;
