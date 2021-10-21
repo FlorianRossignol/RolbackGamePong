@@ -109,7 +109,7 @@ namespace game
         {
             core::LogError("Could not load bullet sprite");
         }
-        if (!shipTexture_.loadFromFile("data/sprites/ship.png"))
+        if (!shipTexture_.loadFromFile("data/sprites/Palette.png"))
         {
             core::LogError("Could not load ship sprite");
         }
