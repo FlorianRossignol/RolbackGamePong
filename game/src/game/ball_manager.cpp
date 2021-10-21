@@ -7,6 +7,7 @@ namespace game
     {
     }
 
+
     void BallManager::FixedUpdate(sf::Time dt)
     {
         for (core::Entity entity = 0; entity < entityManager_.GetEntitiesSize(); entity++)

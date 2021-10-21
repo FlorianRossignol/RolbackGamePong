@@ -141,7 +141,7 @@ namespace game
                     {
                         auto leftV = std::fmod(player.invincibilityTime, invincibilityFlashPeriod);
                         auto rightV = invincibilityFlashPeriod / 2.0f;
-                        //core::LogDebug(fmt::format("Comparing {} and {} with time: {}", leftV, rightV, player.invincibilityTime));
+                        core::LogDebug(fmt::format("Comparing {} and {} with time: {}", leftV, rightV, player.invincibilityTime));
                     }
                     if (player.invincibilityTime > 0.0f &&
                         std::fmod(player.invincibilityTime, invincibilityFlashPeriod)

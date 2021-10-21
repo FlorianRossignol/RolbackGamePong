@@ -4,7 +4,6 @@
 namespace core
 {
 
-
 void LogDebug(const std::string_view msg)
 {
     spdlog::info(msg);

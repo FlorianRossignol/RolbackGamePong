@@ -11,7 +11,6 @@ int main()
     engine.RegisterOnEvent(&app);
     engine.RegisterDraw(&app);
     engine.RegisterDrawImGui(&app);
-
     engine.Run();
     return 0;
 }

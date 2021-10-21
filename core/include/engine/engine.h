@@ -15,7 +15,6 @@ class Engine
 {
 public:
     void Run();
-
     void RegisterSystem(SystemInterface*);
     void RegisterOnEvent(OnEventInterface*);
     void RegisterDraw(DrawInterface*);
@@ -24,7 +23,6 @@ protected:
     void Init();
     void Update(sf::Time dt);
     void Destroy();
-
     std::vector<SystemInterface*> systems_;
     std::vector<OnEventInterface*> eventInterfaces_;
     std::vector<DrawInterface*> drawInterfaces_;

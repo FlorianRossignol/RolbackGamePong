@@ -33,10 +33,10 @@ const std::vector<Vec2f>& TransformManager::GetAllScales() const
     return scaleManager_.GetAllComponents();
 }
 
-/*const std::vector<degree_t>& TransformManager::GetAllRotations() const
+const std::vector<degree_t>& TransformManager::GetAllRotations() const
 {
     return rotationManager_.GetAllComponents();
-}*/
+}
 
 void TransformManager::SetPosition(Entity entity, Vec2f position)
 {

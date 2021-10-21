@@ -41,7 +41,7 @@ namespace game
          * \brief Called by the server to validate a frame
          */
         void Validate(Frame newValidateFrame);
-        //void CopyAllComponents(const GameManager& gameManager);
+        void CopyAllComponents(const GameManager& gameManager);
         static constexpr float PixelPerUnit = 100.0f;
         static constexpr float FixedPeriod = 0.02f; //50fps
         PlayerNumber CheckWinner() const;
