@@ -11,7 +11,7 @@ namespace game
     {
         core::Vec2f velocity = { 0.0f,0.0f };
         core::Vec2f position = { 0.0f,0.0f };
-        const float R = 2.0f;
+         float R = 2.0f;
         //float remainingTime = 0.0f;
         //référence au nombre impossible de player
         PlayerNumber playerNumber = INVALID_PLAYER;

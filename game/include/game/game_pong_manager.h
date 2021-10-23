@@ -1,10 +1,11 @@
 #pragma once
-#include <SFML/Graphics/Texture.hpp>
-#include <SFML/Graphics/Font.hpp>
-#include <SFML/Graphics/View.hpp>
-#include <SFML/System/Time.hpp>
-#include <SFML/System/Vector2.hpp>
-#include <SFML/Graphics/Text.hpp>
+//#include <SFML/Graphics/Texture.hpp>
+//#include <SFML/Graphics/Font.hpp>
+//#include <SFML/Graphics/View.hpp>
+//#include <SFML/System/Time.hpp>
+//#include <SFML/System/Vector2.hpp>
+//#include <SFML/Graphics/Text.hpp>
+#include <SFML/Graphics.hpp>
 
 #include "game_pong_globals.h"
 #include "pong_rollback_manager.h"

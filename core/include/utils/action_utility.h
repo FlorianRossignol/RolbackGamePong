@@ -33,7 +33,7 @@ class Action
 {
 public:
     Action() = default;
-    virtual ~Action() = default;
+    virtual ~Action() =  default ;
 
     void RegisterCallback(const std::function<void(Ts ...)>& callback)
     {

@@ -22,7 +22,7 @@ namespace game
                 }*/
                 auto& ball = components_[entity];
                 ball.velocity = ball.velocity * dt.asSeconds() + ball.position;
-                
+                ball.R;
             }
         }
     }

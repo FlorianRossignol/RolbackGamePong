@@ -336,7 +336,7 @@ namespace game
         currentBallManager_.AddComponent(entity);
         //TODO
         //currentBallManager_.SetComponent(entity, { bulletPeriod, playerNumber });
-        currentBallManager_.SetComponent(entity,ball);
+        //currentBallManager_.SetComponent(entity,ball);
         //currentPhysicsManager_.AddBody(entity);
         //currentPhysicsManager_.SetBody(entity, ballbody);
         //currentPhysicsManager_.AddBox(entity);

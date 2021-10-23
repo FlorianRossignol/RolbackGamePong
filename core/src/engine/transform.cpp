@@ -53,15 +53,15 @@ void TransformManager::SetScale(Entity entity, Vec2f scale)
     scaleManager_.SetComponent(entity, scale);
 }
 
-/*degree_t TransformManager::GetRotation(Entity entity) const
+degree_t TransformManager::GetRotation(Entity entity) const
 {
     return rotationManager_.GetComponent(entity);
-}*/
+}
 
-/*void TransformManager::SetRotation(Entity entity, degree_t rotation)
+void TransformManager::SetRotation(Entity entity, degree_t rotation)
 {
     rotationManager_.SetComponent(entity, rotation);
-}*/
+}
 
 void TransformManager::AddComponent(Entity entity)
 {
