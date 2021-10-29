@@ -250,6 +250,7 @@ namespace game
         Body playerBody;
         playerBody.position = position;
         playerBody.rotation = rotation;
+        
         Box playerBox;
         PlayerCharacter playerchar;
         playerBox.extends = core::Vec2f::one() * playerchar.playerHalfScale * playerchar.playerScale;
@@ -329,10 +330,18 @@ namespace game
         Ball ball;
         Box ballbox;
         Body ballbody;
+        ballbody.position = position;
+        
         createdEntities_.push_back({ entity, testedFrame_ });
 
         //ballbody.position = ball.position * ball.R;
-        
+        ballbody.velocity = core::Vec2f{ 1,1 };
+        currentBallManager_.AddComponent(entity);
+        currentBallManager_.SetComponent(entity, ball);
+        currentPhysicsManager_.AddBody(entity);
+        currentPhysicsManager_.SetBody(entity, ballbody);
+        currentPhysicsManager_.AddBox(entity);
+        currentPhysicsManager_.SetBox(entity, ballbox);
         
         //Body bulletBody;
         //bulletBody.position = position;
@@ -340,7 +349,7 @@ namespace game
         //Box bulletBox;
        // bulletBox.extends = core::Vec2f::one() * ballScale * 0.5f;
 
-        currentBallManager_.AddComponent(entity);
+       
         //TODO
         //currentBallManager_.SetComponent(entity, { bulletPeriod, playerNumber });
         //currentBallManager_.SetComponent(entity,ball);
@@ -348,6 +357,15 @@ namespace game
         //currentPhysicsManager_.SetBody(entity, ballbody);
         //currentPhysicsManager_.AddBox(entity);
         //currentPhysicsManager_.SetBox(entity,ballbox );
+
+        lastValidateBulletManager_.AddComponent(entity);
+        lastValidateBulletManager_.SetComponent(entity, ball);
+
+        lastValidatePhysicsManager_.AddBody(entity);
+        lastValidatePhysicsManager_.SetBody(entity, ballbody);
+        lastValidatePhysicsManager_.AddBox(entity);
+        lastValidatePhysicsManager_.SetBox(entity, ballbox);
+
 
         currentTransformManager_.AddComponent(entity);
         currentTransformManager_.SetPosition(entity, position);

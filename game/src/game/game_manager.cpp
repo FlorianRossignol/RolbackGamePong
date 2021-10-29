@@ -11,7 +11,9 @@ namespace game
 
     GameManager::GameManager() :
         transformManager_(entityManager_),
-        rollbackManager_(*this, entityManager_)
+        rollbackManager_(*this,entityManager_),
+        ballmanager_(entityManager_,*this),
+        physicsManager_(entityManager_)
     {
         playerEntityMap_.fill(core::EntityManager::INVALID_ENTITY);
     }
@@ -57,8 +59,16 @@ namespace game
 
     core::Entity GameManager::SpawnBall(PlayerNumber playerNumber, core::Vec2f position, core::Vec2f velocity)
     {
+        Ball ball;
+        Body ballbody;
+        Box ballbox;
         const core::Entity entity = entityManager_.CreateEntity();
-
+        ballbody.velocity = core::Vec2f{ 1,1 };
+        ballmanager_.SetComponent(entity, ball);
+        physicsManager_.AddBody(entity);
+        physicsManager_.SetBody(entity, ballbody);
+        physicsManager_.AddBox(entity);
+        physicsManager_.SetBox(entity, ballbox);
         transformManager_.AddComponent(entity);
         transformManager_.SetPosition(entity, position);
         transformManager_.SetScale(entity, ballNewScale * ballScale);

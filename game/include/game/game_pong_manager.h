@@ -36,7 +36,9 @@ namespace game
         [[nodiscard]] Frame GetCurrentFrame() const { return currentFrame_; }
         [[nodiscard]] Frame GetLastValidateFrame() const { return rollbackManager_.GetLastValidateFrame(); }
         [[nodiscard]] const core::TransformManager& GetTransformManager() const { return transformManager_; }
+        [[nodiscard]] const BallManager& GetBallManager() const { return ballmanager_; }
         [[nodiscard]] const RollbackManager& GetRollbackManager() const { return rollbackManager_; }
+        [[nodiscard]] const PhysicsManager& GetPhysicsManager() const { return physicsManager_; }
         virtual void SetPlayerInput(PlayerNumber playerNumber, std::uint8_t playerInput, std::uint32_t inputFrame);
         /*
          * \brief Called by the server to validate a frame
@@ -50,6 +52,8 @@ namespace game
     protected:
         core::EntityManager entityManager_;
         core::TransformManager transformManager_;
+        game::BallManager ballmanager_;
+        game::PhysicsManager physicsManager_;
         RollbackManager rollbackManager_;
         std::array<core::Entity, maxPlayerNmb> playerEntityMap_{};
         Frame currentFrame_ = 0;
