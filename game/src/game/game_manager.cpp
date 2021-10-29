@@ -77,11 +77,7 @@ namespace game
         return entity;
     }
 
-    void GameManager::DestroyBullet(core::Entity entity)
-    {
-        rollbackManager_.DestroyEntity(entity);
-    }
-
+   
     PlayerNumber GameManager::CheckWinner() const
     {
         int alivePlayer = 0;
@@ -119,13 +115,17 @@ namespace game
     void ClientGameManager::Init()
     {
         //load textures
-        if (!bulletTexture_.loadFromFile("data/sprites/bullet.png"))
+        if (!ballTexture_.loadFromFile("data/sprites/bullet.png"))
         {
             core::LogError("Could not load bullet sprite");
         }
         if (!shipTexture_.loadFromFile("data/sprites/Palette.jpg"))
         {
             core::LogError("Could not load ship sprite");
+        }
+        if (!pongBg_.loadFromFile("data/sprites/Pongbg.png"))
+        {
+            core::LogError("Could not load pong background");
         }
         //load fonts
         if (!font_.loadFromFile("data/fonts/8-bit-hud.ttf"))
@@ -311,8 +311,8 @@ namespace game
         const auto entity = GameManager::SpawnBall(playerNumber, position, velocity);
 
         spriteManager_.AddComponent(entity);
-        spriteManager_.SetTexture(entity, bulletTexture_);
-        spriteManager_.SetOrigin(entity, sf::Vector2f(bulletTexture_.getSize())/2.0f);
+        spriteManager_.SetTexture(entity, ballTexture_);
+        spriteManager_.SetOrigin(entity, sf::Vector2f(ballTexture_.getSize())/2.0f);
 
         return entity;
     }

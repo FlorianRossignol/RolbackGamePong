@@ -300,7 +300,7 @@ namespace game
         {
             if (player.playerNumber != bullet.playerNumber)
             {
-                gameManager_.DestroyBullet(bulletEntity);
+                
                 //lower health point
                 auto playerCharacter = currentPlayerManager_.GetComponent(playerEntity);
                 if (playerCharacter.invincibilityTime <= 0.0f)

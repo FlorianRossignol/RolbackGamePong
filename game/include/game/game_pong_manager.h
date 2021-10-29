@@ -31,7 +31,7 @@ namespace game
         virtual ~GameManager() = default;
         virtual void SpawnPlayer(PlayerNumber playerNumber, core::Vec2f position, core::degree_t rotation);
         virtual core::Entity SpawnBall(PlayerNumber, core::Vec2f position, core::Vec2f velocity);
-        virtual void DestroyBullet(core::Entity entity);
+        
         [[nodiscard]] core::Entity GetEntityFromPlayerNumber(PlayerNumber playerNumber) const;
         [[nodiscard]] Frame GetCurrentFrame() const { return currentFrame_; }
         [[nodiscard]] Frame GetLastValidateFrame() const { return rollbackManager_.GetLastValidateFrame(); }
@@ -103,7 +103,8 @@ namespace game
         std::uint32_t state_ = 0;
 
         sf::Texture shipTexture_;
-        sf::Texture bulletTexture_;
+        sf::Texture ballTexture_;
+        sf::Texture pongBg_;
         sf::Font font_;
 
         sf::Text textRenderer_;
