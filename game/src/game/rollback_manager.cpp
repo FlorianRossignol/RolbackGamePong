@@ -251,18 +251,21 @@ namespace game
         playerBody.position = position;
         playerBody.rotation = rotation;
         Box playerBox;
-        playerBox.extends = core::Vec2f::one() * 0.5f;
+        PlayerCharacter playerchar;
+        playerBox.extends = core::Vec2f::one() * playerchar.playerHalfScale * playerchar.playerScale;
 
         PlayerCharacter playerCharacter;
         playerCharacter.playerNumber = playerNumber;
 
         currentPlayerManager_.AddComponent(entity);
         currentPlayerManager_.SetComponent(entity, playerCharacter);
+        
 
         currentPhysicsManager_.AddBody(entity);
         currentPhysicsManager_.SetBody(entity, playerBody);
         currentPhysicsManager_.AddBox(entity);
         currentPhysicsManager_.SetBox(entity, playerBox);
+        
 
         lastValidatePlayerManager_.AddComponent(entity);
         lastValidatePlayerManager_.SetComponent(entity, playerCharacter);
@@ -275,6 +278,7 @@ namespace game
         currentTransformManager_.AddComponent(entity);
         currentTransformManager_.SetPosition(entity, position);
         currentTransformManager_.SetRotation(entity, rotation);
+        currentTransformManager_.SetScale(entity, core::Vec2f{ 5,5 });
     }
 
     PlayerInput RollbackManager::GetInputAtFrame(PlayerNumber playerNumber, Frame frame)

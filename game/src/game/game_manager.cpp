@@ -28,6 +28,7 @@ namespace game
         transformManager_.AddComponent(entity);
         transformManager_.SetPosition(entity, position);
         transformManager_.SetRotation(entity, rotation);
+        transformManager_.SetScale(entity, core::Vec2f{5,5});
         rollbackManager_.SpawnPlayer(playerNumber, entity, position, core::degree_t(rotation));
     }
 

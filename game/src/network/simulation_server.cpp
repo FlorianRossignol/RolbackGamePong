@@ -5,6 +5,7 @@
 #include <utils/conversion.h>
 #include <utils/log.h>
 
+
 namespace game
 {
     SimulationServer::SimulationServer(std::array<std::unique_ptr<SimulationClient>, 2>& clients) : clients_(clients)
@@ -114,6 +115,7 @@ namespace game
         //spawnPlayer->angle = core::ConvertToBinary(rotation);
         //TODO
         gameManager_.SpawnPlayer(playerNumber, pos, core::degree_t(0.0f));
+        //core::TransformManager::SetScale(p, core::Vec2f{ 5,5 });
         SendReliablePacket(std::move(spawnPlayer));
     }
 }
