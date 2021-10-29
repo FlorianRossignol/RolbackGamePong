@@ -48,7 +48,7 @@ class GameManager;
         [[nodiscard]] Frame GetLastValidateFrame() const { return lastValidateFrame_; }
         [[nodiscard]] Frame GetLastReceivedFrame(PlayerNumber playerNumber) const { return lastReceivedFrame_[playerNumber]; }
         [[nodiscard]] Frame GetCurrentFrame() const { return currentFrame_; }
-        [[nodiscard]] const core::TransformManager& GetTransformManager() const { return currentTransformManager_; }
+        [[nodiscard]] core::TransformManager& GetTransformManager() { return currentTransformManager_; }
         [[nodiscard]] const PlayerCharacterManager& GetPlayerCharacterManager() const { return currentPlayerManager_; }
         void SpawnPlayer(PlayerNumber playerNumber, core::Entity entity, core::Vec2f position, core::degree_t rotation);
         void SpawnBalle(PlayerNumber playerNumber, core::Entity entity, core::Vec2f position, core::Vec2f velocity);

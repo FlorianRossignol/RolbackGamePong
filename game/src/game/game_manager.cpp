@@ -133,6 +133,20 @@ namespace game
             core::LogError("Could not load font");
         }
         textRenderer_.setFont(font_);
+        const auto bgEntity = entityManager_.CreateEntity();
+        
+        transformManager_.AddComponent(bgEntity);
+        transformManager_.SetScale(bgEntity, core::Vec2f{ 1,1 });
+        transformManager_.SetPosition(bgEntity, core::Vec2f{ 0,0 });
+        transformManager_.SetRotation(bgEntity, core::degree_t{ 0 });
+        auto& rollTransformManager = rollbackManager_.GetTransformManager();
+        rollTransformManager.SetPosition(bgEntity,transformManager_.GetPosition(bgEntity));
+        rollTransformManager.SetRotation(bgEntity, transformManager_.GetRotation(bgEntity));
+        rollTransformManager.SetScale(bgEntity, transformManager_.GetScale(bgEntity));
+        spriteManager_.AddComponent(bgEntity);
+        spriteManager_.SetTexture(bgEntity, pongBg_);
+        spriteManager_.SetOrigin(bgEntity, sf::Vector2f(pongBg_.getSize()) / 2.0f);
+        
         pongBackground_.Init();
     }
 
@@ -202,8 +216,9 @@ namespace game
         target.setView(cameraView_);
 
         //pongBackground_.Draw(target);
+        
         spriteManager_.Draw(target);
-
+        //spriteManager_.Draw(pongRectangle);
         // Draw texts on screen
         target.setView(originalView_);
         if (state_ & FINISHED)
