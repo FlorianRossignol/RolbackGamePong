@@ -67,13 +67,13 @@ void TransformManager::AddComponent(Entity entity)
 {
     positionManager_.AddComponent(entity);
     scaleManager_.AddComponent(entity);
-    //rotationManager_.AddComponent(entity);
+    rotationManager_.AddComponent(entity);
 }
 
 void TransformManager::RemoveComponent(Entity entity)
 {
     positionManager_.AddComponent(entity);
     scaleManager_.AddComponent(entity);
-    //rotationManager_.AddComponent(entity);
+    rotationManager_.AddComponent(entity);
 }
 }

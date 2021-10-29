@@ -327,6 +327,9 @@ namespace game
         Body ballbody;
         createdEntities_.push_back({ entity, testedFrame_ });
 
+        //ballbody.position = ball.position * ball.R;
+        
+        
         //Body bulletBody;
         //bulletBody.position = position;
         //bulletBody.velocity = velocity;

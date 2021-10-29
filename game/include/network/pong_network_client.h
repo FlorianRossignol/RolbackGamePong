@@ -15,7 +15,6 @@ namespace game
 			JOINED,
 			GAME_STARTING,
 			GAME
-
 		};
 		enum class PacketSource
 		{

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <utils/log.h>
 #include <cstdint>
 #include <engine/globals.h>
 #include <engine/entity.h>
@@ -38,6 +39,7 @@ namespace core
 
         virtual void AddComponent(Entity entity);
         virtual void RemoveComponent(Entity entity);
+       
 
         [[nodiscard]] const T& GetComponent(Entity entity) const;
         [[nodiscard]] T& GetComponent(Entity entity);
@@ -54,6 +56,11 @@ namespace core
     template <typename T, Component C>
     void ComponentManager<T, C>::AddComponent(Entity entity)
     {
+        if (entity == EntityManager::INVALID_ENTITY)
+        {
+            core::LogError("ADD COMPONENT WHIT INVALID IDENTITY");
+            return;
+        }
         // Resize components array if too small
         auto currentSize = components_.size();
         while (entity >= currentSize)

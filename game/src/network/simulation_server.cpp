@@ -113,7 +113,7 @@ namespace game
         //const auto rotation = spawnRotations[playerNumber];
         //spawnPlayer->angle = core::ConvertToBinary(rotation);
         //TODO
-        //gameManager_.SpawnPlayer(playerNumber, pos);
+        gameManager_.SpawnPlayer(playerNumber, pos, core::degree_t(0.0f));
         SendReliablePacket(std::move(spawnPlayer));
     }
 }

@@ -157,6 +157,7 @@ namespace game
     struct StartGamePacket : TypedPacket<PacketType::START_GAME>
     {
         std::array<std::uint8_t, sizeof(unsigned long long)> startTime{};
+
     };
 
 

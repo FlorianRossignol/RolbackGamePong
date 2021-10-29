@@ -19,7 +19,9 @@ namespace game
     void GameManager::SpawnPlayer(PlayerNumber playerNumber, core::Vec2f position, core::degree_t rotation)
     {
         if (GetEntityFromPlayerNumber(playerNumber) != core::EntityManager::INVALID_ENTITY)
+        {
             return;
+        }
         core::LogDebug("[GameManager] Spawning new player");
         const auto entity = entityManager_.CreateEntity();
         playerEntityMap_[playerNumber] = entity;
@@ -137,20 +139,15 @@ namespace game
                 {
                     const auto& player = rollbackManager_.GetPlayerCharacterManager().GetComponent(entity);
 
-                    if (player.invincibilityTime > 0.0f)
+                   
+                    if (player.playerNumber == INVALID_PLAYER)
                     {
-                        auto leftV = std::fmod(player.invincibilityTime, invincibilityFlashPeriod);
-                        auto rightV = invincibilityFlashPeriod / 2.0f;
-                        core::LogDebug(fmt::format("Comparing {} and {} with time: {}", leftV, rightV, player.invincibilityTime));
-                    }
-                    if (player.invincibilityTime > 0.0f &&
-                        std::fmod(player.invincibilityTime, invincibilityFlashPeriod)
-                    > invincibilityFlashPeriod / 2.0f)
-                    {
-                        spriteManager_.SetColor(entity, sf::Color::Black);
+                        core::LogError("INVALID PLAYER NUMBER IN UPDATE");
+                   
                     }
                     else
                     {
+
                         spriteManager_.SetColor(entity, playerColors[player.playerNumber]);
                     }
                 }
@@ -193,7 +190,7 @@ namespace game
         UpdateCameraView();
         target.setView(cameraView_);
 
-        pongBackground_.Draw(target);
+        //pongBackground_.Draw(target);
         spriteManager_.Draw(target);
 
         // Draw texts on screen
@@ -284,7 +281,7 @@ namespace game
 
     void ClientGameManager::SpawnPlayer(PlayerNumber playerNumber, core::Vec2f position, core::degree_t rotation)
     {
-        core::LogDebug(fmt::format("Spawn player: {}", playerNumber));
+        core::LogDebug(fmt::format("Spawn player on client: {}", playerNumber));
 
         GameManager::SpawnPlayer(playerNumber, position, rotation);
         const auto entity = GetEntityFromPlayerNumber(playerNumber);
@@ -299,14 +296,13 @@ namespace game
 
     core::Entity ClientGameManager::SpawnBall(PlayerNumber playerNumber, core::Vec2f position, core::Vec2f velocity)
     {
+        core::LogDebug("spawnballonclient");
         const auto entity = GameManager::SpawnBall(playerNumber, position, velocity);
 
         spriteManager_.AddComponent(entity);
         spriteManager_.SetTexture(entity, bulletTexture_);
         spriteManager_.SetOrigin(entity, sf::Vector2f(bulletTexture_.getSize())/2.0f);
-        auto sprite = spriteManager_.GetComponent(entity);
-        sprite.setColor(playerColors[playerNumber]);
-        spriteManager_.SetComponent(entity, sprite);
+
         return entity;
     }
 
@@ -379,6 +375,9 @@ namespace game
 
     void ClientGameManager::StartGame(unsigned long long int startingTime)
     {
+        //TODO SPAWN BALL
+        Ball ball;
+        SpawnBall(maxPlayerNmb, ball.position, ball.velocity);
         core::LogDebug(fmt::format("Start game at starting time: {}", startingTime));
         startingTime_ = startingTime;
     }

@@ -1,12 +1,11 @@
 #pragma once
+
 #include "game_pong_globals.h"
 #include "engine/component.h"
 #include "engine/entity.h"
 #include "maths/angle.h"
 #include "maths/vec2.h"
-
 #include <SFML/System/Time.hpp>
-
 #include "utils/action_utility.h"
 
 namespace game
@@ -57,7 +56,6 @@ namespace game
         [[nodiscard]] const Body& GetBody(core::Entity entity) const;
         void SetBody(core::Entity entity, const Body& body);
         void AddBody(core::Entity entity);
-
         void AddBox(core::Entity entity);
         void SetBox(core::Entity entity, const Box& box);
         [[nodiscard]] const Box& GetBox(core::Entity entity) const;

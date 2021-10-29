@@ -1,6 +1,7 @@
 #pragma once
 #include <memory>
 
+#include "game/game_pong_manager.h"
 #include "pong_packet_type.h"
 #include "engine/system.h"
 #include "game/game_pong_globals.h"

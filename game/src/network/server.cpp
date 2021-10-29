@@ -29,6 +29,7 @@ namespace game
 
             if (lastPlayerNumber_ == maxPlayerNmb)
             {
+                Ball ball;
                 auto startGamePacket = std::make_unique<StartGamePacket>();
                 startGamePacket->packetType = PacketType::START_GAME;
                 using namespace std::chrono;
@@ -37,6 +38,7 @@ namespace game
                     ) + milliseconds(3000)).count();
                 startGamePacket->startTime = core::ConvertToBinary(ms);
                 SendReliablePacket(std::move(startGamePacket));
+                gameManager_.SpawnBall(maxPlayerNmb,ball.position,ball.velocity);
             }
 
             break;
