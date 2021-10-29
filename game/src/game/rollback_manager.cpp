@@ -351,7 +351,7 @@ namespace game
 
         currentTransformManager_.AddComponent(entity);
         currentTransformManager_.SetPosition(entity, position);
-        currentTransformManager_.SetScale(entity, core::Vec2f::one() * ballScale);
+        currentTransformManager_.SetScale(entity, ballNewScale * ballScale);
         currentTransformManager_.SetRotation(entity, core::degree_t(0.0f));
     }
 

@@ -61,7 +61,7 @@ namespace game
 
         transformManager_.AddComponent(entity);
         transformManager_.SetPosition(entity, position);
-        transformManager_.SetScale(entity, core::Vec2f::one() * ballScale);
+        transformManager_.SetScale(entity, ballNewScale * ballScale);
         transformManager_.SetRotation(entity, core::degree_t(0.0f));
         rollbackManager_.SpawnBalle(playerNumber, entity, position, velocity);
         return entity;
