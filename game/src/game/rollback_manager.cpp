@@ -190,6 +190,7 @@ namespace game
         }
         //Copy back the new validate game state to the last validated game state
         lastValidateBulletManager_.CopyAllComponents(currentBallManager_.GetAllComponents());
+        
         lastValidatePlayerManager_.CopyAllComponents(currentPlayerManager_.GetAllComponents());
         lastValidatePhysicsManager_.CopyAllComponents(currentPhysicsManager_);
         lastValidateFrame_ = newValidateFrame;
@@ -211,9 +212,12 @@ namespace game
     {
         PhysicsState state = 0;
         const core::Entity playerEntity = gameManager_.GetEntityFromPlayerNumber(playerNumber);
+       
         const auto& playerBody = lastValidatePhysicsManager_.GetBody(playerEntity);
+     
 
         const auto pos = playerBody.position;
+       
         const auto* posPtr = reinterpret_cast<const PhysicsState*>(&pos);
         //Adding position
         for (size_t i = 0; i < sizeof(core::Vec2f) / sizeof(PhysicsState); i++)
@@ -334,7 +338,7 @@ namespace game
         
         createdEntities_.push_back({ entity, testedFrame_ });
 
-        //ballbody.position = ball.position * ball.R;
+        
         ballbody.velocity = core::Vec2f{ 1,1 };
         currentBallManager_.AddComponent(entity);
         currentBallManager_.SetComponent(entity, ball);
@@ -371,12 +375,13 @@ namespace game
         currentTransformManager_.SetPosition(entity, position);
         currentTransformManager_.SetScale(entity, ballNewScale * ballScale);
         currentTransformManager_.SetRotation(entity, core::degree_t(0.0f));
+        
     }
 
     void RollbackManager::DestroyEntity(core::Entity entity)
     {
         //we don't need to save a bullet that has been created in the time window
-        if (std::find_if(createdEntities_.begin(), createdEntities_.end(), [entity](auto newEntity)
+        /*if (std::find_if(createdEntities_.begin(), createdEntities_.end(), [entity](auto newEntity)
             {
                 return newEntity.entity == entity;
             }) != createdEntities_.end())
@@ -384,6 +389,6 @@ namespace game
             entityManager_.DestroyEntity(entity);
             return;
         }
-        entityManager_.AddComponent(entity, static_cast<core::EntityMask>(ComponentType::DESTROYED));
+        entityManager_.AddComponent(entity, static_cast<core::EntityMask>(ComponentType::DESTROYED));*/
     }
 }
