@@ -119,7 +119,7 @@ namespace game
         {
             core::LogError("Could not load bullet sprite");
         }
-        if (!shipTexture_.loadFromFile("data/sprites/Palette.jpg"))
+        if (!paletteTexture_.loadFromFile("data/sprites/Palette.jpg"))
         {
             core::LogError("Could not load ship sprite");
         }
@@ -312,11 +312,13 @@ namespace game
         GameManager::SpawnPlayer(playerNumber, position, rotation);
         const auto entity = GetEntityFromPlayerNumber(playerNumber);
         spriteManager_.AddComponent(entity);
-        spriteManager_.SetTexture(entity, shipTexture_);
-        spriteManager_.SetOrigin(entity, sf::Vector2f(shipTexture_.getSize())/2.0f);
+        spriteManager_.SetTexture(entity, paletteTexture_);
+        spriteManager_.SetOrigin(entity, sf::Vector2f(paletteTexture_.getSize())/2.0f);
         auto sprite = spriteManager_.GetComponent(entity);
         sprite.setColor(playerColors[playerNumber]);
+        spriteManager_.Flip(entity);
         spriteManager_.SetComponent(entity, sprite);
+        
 
     }
 
@@ -401,7 +403,7 @@ namespace game
 
     void ClientGameManager::StartGame(unsigned long long int startingTime)
     {
-        //TODO SPAWN BALL
+        
         Ball ball;
         SpawnBall(maxPlayerNmb, ball.position, ball.velocity);
         core::LogDebug(fmt::format("Start game at starting time: {}", startingTime));
@@ -475,7 +477,7 @@ namespace game
             if(entityManager_.HasComponent(playerEntity, static_cast<core::EntityMask>(core::ComponentType::POSITION)))
             {
                 const auto position = transformManager_.GetPosition(playerEntity);
-                if((std::abs(position.x) + margin) > extends.x)
+                if ((std::abs(position.x) + margin) > extends.x)
                 {
                     const auto ratio = (std::abs(position.x ) + margin) / extends.x;
                     if(ratio > currentZoom)
@@ -483,6 +485,7 @@ namespace game
                         currentZoom = ratio;
                     }
                 }
+
                 if ((std::abs(position.y) + margin) > extends.y)
                 {
                     const auto ratio = (std::abs(position.y) + margin) / extends.y;
@@ -491,6 +494,7 @@ namespace game
                         currentZoom = ratio;
                     }
                 }
+                
             }
         }
         cameraView_.zoom(currentZoom);

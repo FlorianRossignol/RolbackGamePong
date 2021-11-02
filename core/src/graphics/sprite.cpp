@@ -45,4 +45,10 @@ namespace core
     {
         components_[entity].setColor(color);
     }
+
+    void SpriteManager::Flip(Entity entity)
+    {
+        
+        components_[entity].rotate(380);
+    }
 } // namespace core
