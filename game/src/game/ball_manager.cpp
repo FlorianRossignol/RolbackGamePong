@@ -22,19 +22,25 @@ namespace game
                     entityManager_.DestroyEntity(entity);
                 }*/
                 auto ball = physicsManager_.GetBody(entity);
+                
                 //ball.velocity = ball.velocity * dt.asSeconds() + ball.position;
                 
-                if (ball.position.x > rectShapeDim.x /100 ||
+                if (ball.position.x > rectShapeDim.x / 100 ||
                     ball.position.x < -rectShapeDim.x /100)
                 {
-                   
-                    ball.velocity = core::Vec2f{ -ball.velocity.x,ball.velocity.y };
+                    //auto accel = core::Vec2f{ 0.1,0.1 };
+                    //ball.velocity = core::Vec2f{ -ball.velocity.x,ball.velocity.y }; //+ accel;
+                    ball.position = core::Vec2f{0,0};
+                    //player.health--;
                 }
-                if (ball.position.y > rectShapeDim.y /100 ||
+                if (ball.position.y > rectShapeDim.y / 100 ||
                     ball.position.y < -rectShapeDim.y /100)
                 {
+                    //auto accel = core::Vec2f{ 0.1,0.1 };
                     ball.velocity = core::Vec2f{ ball.velocity.x,-ball.velocity.y };
+                    
                 }
+                
                 physicsManager_.SetBody(entity, ball);
                 //std::cout << ball.position.x;
             }
