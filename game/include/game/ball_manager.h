@@ -2,6 +2,7 @@
 #include <SFML/System/Time.hpp>
 #include <maths/vec2.h>
 #include "game_pong_globals.h"
+#include "physics_pong_manager.h"
 
 //class pour gérer la boule du pong 
 namespace game
@@ -21,9 +22,10 @@ namespace game
     class BallManager : public core::ComponentManager<Ball, static_cast<core::EntityMask>(ComponentType::BALL)>
     {
     public:
-        explicit BallManager(core::EntityManager& entityManager, GameManager& gameManager);
+        explicit BallManager(core::EntityManager& entityManager, GameManager& gameManager,PhysicsManager& physicsManager);
         void FixedUpdate(sf::Time dt);
     private:
         GameManager& gameManager_;
+        PhysicsManager& physicsManager_;
     };
 }

@@ -36,10 +36,15 @@ namespace game
             dir = dir.Rotate(-(playerBody.rotation + playerBody.angularVelocity * dt.asSeconds()));
 
             const auto acceleration = ((down ? -1.0f : 0.0f) + (up ? 1.0f : 0.0f)) * dir;
-
+            
 
             playerBody.velocity += acceleration * dt.asSeconds();
-
+            if ((playerBody.position.y > rectShapeDim.y / 100 &&
+                playerBody.velocity.y > 0)
+                || ( playerBody.velocity.y < 0 && playerBody.position.y < -rectShapeDim.y /100))
+            {
+                playerBody.velocity = core::Vec2f{ 0,0 };
+            }
             physicsManager_.SetBody(playerEntity, playerBody);
 
             if (playerCharacter.invincibilityTime > 0.0f)

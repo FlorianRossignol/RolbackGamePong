@@ -12,7 +12,7 @@ namespace game
     GameManager::GameManager() :
         transformManager_(entityManager_),
         rollbackManager_(*this,entityManager_),
-        ballmanager_(entityManager_,*this),
+        ballmanager_(entityManager_,*this,physicsManager_),
         physicsManager_(entityManager_)
     {
         playerEntityMap_.fill(core::EntityManager::INVALID_ENTITY);
@@ -64,6 +64,7 @@ namespace game
         Box ballbox;
         const core::Entity entity = entityManager_.CreateEntity();
         ballbody.velocity = core::Vec2f{ 1,1 };
+      
         ballmanager_.SetComponent(entity, ball);
         physicsManager_.AddBody(entity);
         physicsManager_.SetBody(entity, ballbody);
@@ -88,12 +89,12 @@ namespace game
             if (!entityManager_.HasComponent(entity, static_cast<core::EntityMask>(ComponentType::PLAYER_CHARACTER)))
                 continue;
             const auto& player = playerManager.GetComponent(entity);
-            //TODO Win conditionPong
-            /*if (player.health > 0)
+            
+            if (player.health > 0)
             {
                 alivePlayer++;
                 winner = player.playerNumber;
-            }*/
+            }
             
         }
 
@@ -132,7 +133,10 @@ namespace game
         {
             core::LogError("Could not load font");
         }
+
         textRenderer_.setFont(font_);
+        Body bgbody;
+        Box bgbox;
         const auto bgEntity = entityManager_.CreateEntity();
         
         transformManager_.AddComponent(bgEntity);
@@ -146,7 +150,10 @@ namespace game
         spriteManager_.AddComponent(bgEntity);
         spriteManager_.SetTexture(bgEntity, pongBg_);
         spriteManager_.SetOrigin(bgEntity, sf::Vector2f(pongBg_.getSize()) / 2.0f);
-        
+        physicsManager_.AddBody(bgEntity);
+        physicsManager_.SetBody(bgEntity, bgbody);
+        physicsManager_.AddBox(bgEntity);
+        physicsManager_.SetBox(bgEntity, bgbox);
         pongBackground_.Init();
     }
 
@@ -317,6 +324,7 @@ namespace game
         auto sprite = spriteManager_.GetComponent(entity);
         sprite.setColor(playerColors[playerNumber]);
         spriteManager_.Flip(entity);
+        
         spriteManager_.SetComponent(entity, sprite);
         
 
@@ -324,9 +332,10 @@ namespace game
 
     core::Entity ClientGameManager::SpawnBall(PlayerNumber playerNumber, core::Vec2f position, core::Vec2f velocity)
     {
+        
         core::LogDebug("spawnballonclient");
         const auto entity = GameManager::SpawnBall(playerNumber, position, velocity);
-
+        
         spriteManager_.AddComponent(entity);
         spriteManager_.SetTexture(entity, ballTexture_);
         spriteManager_.SetOrigin(entity, sf::Vector2f(ballTexture_.getSize())/2.0f);

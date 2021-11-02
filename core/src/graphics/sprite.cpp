@@ -50,5 +50,6 @@ namespace core
     {
         
         components_[entity].rotate(380);
+        components_[entity].setRotation(380);
     }
 } // namespace core

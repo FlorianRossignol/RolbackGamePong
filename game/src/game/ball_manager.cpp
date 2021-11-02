@@ -2,8 +2,9 @@
 
 namespace game
 {
-    BallManager::BallManager(core::EntityManager& entityManager, GameManager& gameManager) :
-        ComponentManager(entityManager), gameManager_(gameManager)
+    BallManager::BallManager(core::EntityManager& entityManager, GameManager& gameManager,
+        PhysicsManager& physicsManager) :
+        ComponentManager(entityManager), gameManager_(gameManager), physicsManager_(physicsManager)
     {
     }
 
@@ -20,9 +21,22 @@ namespace game
                 {
                     entityManager_.DestroyEntity(entity);
                 }*/
-                auto& ball = components_[entity];
-                ball.velocity = ball.velocity * dt.asSeconds() + ball.position;
-                ball.R;
+                auto ball = physicsManager_.GetBody(entity);
+                //ball.velocity = ball.velocity * dt.asSeconds() + ball.position;
+                
+                if (ball.position.x > rectShapeDim.x /100 ||
+                    ball.position.x < -rectShapeDim.x /100)
+                {
+                   
+                    ball.velocity = core::Vec2f{ -ball.velocity.x,ball.velocity.y };
+                }
+                if (ball.position.y > rectShapeDim.y /100 ||
+                    ball.position.y < -rectShapeDim.y /100)
+                {
+                    ball.velocity = core::Vec2f{ ball.velocity.x,-ball.velocity.y };
+                }
+                physicsManager_.SetBody(entity, ball);
+                //std::cout << ball.position.x;
             }
         }
     }

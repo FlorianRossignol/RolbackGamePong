@@ -203,6 +203,10 @@ namespace game
             gameManager_.GetPlayerNumber(),
             input,
             currentFrame);
+        if (gameManager_.GetPlayerNumber() == 2)
+        {
+            gameManager_.SetPlayerInput(gameManager_.GetPlayerNumber(), input, !currentFrame);
+        }
     }
 
     void ClientNetworkManager::ReceivePacket(sf::Packet& packet, PacketSource source)

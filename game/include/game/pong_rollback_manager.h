@@ -73,6 +73,7 @@ class GameManager;
          * Last Validate (confirm frame) Component Managers used for rollback
          */
         PhysicsManager lastValidatePhysicsManager_;
+        
         PlayerCharacterManager lastValidatePlayerManager_;
         BallManager lastValidateBulletManager_;
 

@@ -11,9 +11,9 @@ namespace game
         gameManager_(gameManager), entityManager_(entityManager),
         currentTransformManager_(entityManager),
         currentPhysicsManager_(entityManager), currentPlayerManager_(entityManager, currentPhysicsManager_, gameManager_),
-        currentBallManager_(entityManager, gameManager),
+        currentBallManager_(entityManager, gameManager,currentPhysicsManager_),
         lastValidatePhysicsManager_(entityManager),
-        lastValidatePlayerManager_(entityManager, lastValidatePhysicsManager_, gameManager_), lastValidateBulletManager_(entityManager, gameManager)
+        lastValidatePlayerManager_(entityManager, lastValidatePhysicsManager_, gameManager_), lastValidateBulletManager_(entityManager, gameManager,lastValidatePhysicsManager_)
     {
         for (auto& input : inputs_)
         {
@@ -257,7 +257,7 @@ namespace game
         
         Box playerBox;
         PlayerCharacter playerchar;
-        playerBox.extends = core::Vec2f::one() * playerchar.playerHalfScale * playerchar.playerScale;
+        playerBox.extends = core::Vec2f::one() * playerchar.playerHalfScale /5;
 
         PlayerCharacter playerCharacter;
         playerCharacter.playerNumber = playerNumber;
@@ -296,22 +296,33 @@ namespace game
     void RollbackManager::OnTrigger(core::Entity entity1, core::Entity entity2)
     {
         std::function<void(const PlayerCharacter&, core::Entity, const Ball&, core::Entity)> ManageCollision =
-            [this](const auto& player, auto playerEntity, const auto& bullet, auto bulletEntity)
+            [this](const auto& player, auto playerEntity, const auto& ball, auto ballEntity)
         {
-            if (player.playerNumber != bullet.playerNumber)
+            auto ballbody = currentPhysicsManager_.GetBody(ballEntity);
+            if (player.playerNumber %2 == 0)
+            {
+                ballbody.velocity = core::Vec2f{ -abs(ballbody.velocity.x),ballbody.velocity.y };
+            }
+            else
+            {
+                ballbody.velocity = core::Vec2f{ abs(ballbody.velocity.x),ballbody.velocity.y };
+            }
+            currentPhysicsManager_.SetBody(ballEntity, ballbody);
+            //if (player.playerNumber != ball.playerNumber)
             {
                 
                 //lower health point
-                auto playerCharacter = currentPlayerManager_.GetComponent(playerEntity);
+                /*auto playerCharacter = currentPlayerManager_.GetComponent(playerEntity);
                 if (playerCharacter.invincibilityTime <= 0.0f)
                 {
                     core::LogDebug(fmt::format("Player {} is hit by bullet", playerCharacter.playerNumber));
                     //playerCharacter.health--;
                     playerCharacter.invincibilityTime = playerInvincibilityPeriod;
                 }
-                currentPlayerManager_.SetComponent(playerEntity, playerCharacter);
+                currentPlayerManager_.SetComponent(playerEntity, playerCharacter);*/
             }
         };
+
         if (entityManager_.HasComponent(entity1, static_cast<core::EntityMask>(ComponentType::PLAYER_CHARACTER)) &&
             entityManager_.HasComponent(entity2, static_cast<core::EntityMask>(ComponentType::BALL)))
         {
@@ -334,36 +345,24 @@ namespace game
         Ball ball;
         Box ballbox;
         Body ballbody;
+        
         ballbody.position = position;
         
         createdEntities_.push_back({ entity, testedFrame_ });
-
         
         ballbody.velocity = core::Vec2f{ 1,1 };
+
+        
         currentBallManager_.AddComponent(entity);
         currentBallManager_.SetComponent(entity, ball);
         currentPhysicsManager_.AddBody(entity);
         currentPhysicsManager_.SetBody(entity, ballbody);
         currentPhysicsManager_.AddBox(entity);
         currentPhysicsManager_.SetBox(entity, ballbox);
-        
-        //Body bulletBody;
-        //bulletBody.position = position;
-        //bulletBody.velocity = velocity;
-        //Box bulletBox;
-       // bulletBox.extends = core::Vec2f::one() * ballScale * 0.5f;
-
-       
-        //TODO
-        //currentBallManager_.SetComponent(entity, { bulletPeriod, playerNumber });
-        //currentBallManager_.SetComponent(entity,ball);
-        //currentPhysicsManager_.AddBody(entity);
-        //currentPhysicsManager_.SetBody(entity, ballbody);
-        //currentPhysicsManager_.AddBox(entity);
-        //currentPhysicsManager_.SetBox(entity,ballbox );
 
         lastValidateBulletManager_.AddComponent(entity);
         lastValidateBulletManager_.SetComponent(entity, ball);
+        
 
         lastValidatePhysicsManager_.AddBody(entity);
         lastValidatePhysicsManager_.SetBody(entity, ballbody);

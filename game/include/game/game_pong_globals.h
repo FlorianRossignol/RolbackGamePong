@@ -17,7 +17,7 @@ namespace game
     using Frame = std::uint32_t;
 
     const std::uint32_t maxPlayerNmb = 2;
-    //const short playerHealth = 5;
+    const short playerHealth = 5;
     //const float playerSpeed = 1.0f;
     const core::degree_t playerAngularSpeed = core::degree_t(90.0f);
     const float playerShootingPeriod = 0.3f;
@@ -25,7 +25,8 @@ namespace game
     const float ballScale = 0.5f;
     const core::Vec2f ballNewScale = {5,5};
     //using pixelpermeter
-    const core::Vec2f rectShapeDim = { 1000,600 };
+   
+    const core::Vec2f rectShapeDim = { 1000 /2,600 /2.0f};
     const float bulletPeriod = 3.0f;
     const float playerInvincibilityPeriod = 1.5f;
     const float invincibilityFlashPeriod = 0.5f;
