@@ -321,6 +321,9 @@ namespace game
                 }
                 currentPlayerManager_.SetComponent(playerEntity, playerCharacter);*/
             }
+           
+            
+                
         };
 
         if (entityManager_.HasComponent(entity1, static_cast<core::EntityMask>(ComponentType::PLAYER_CHARACTER)) &&
@@ -338,6 +341,20 @@ namespace game
             const auto& bullet = currentBallManager_.GetComponent(entity1);
             ManageCollision(player, entity2, bullet, entity1);
         }
+        auto playerCharacter = currentPlayerManager_.GetComponent(entity2);
+        auto ballbody = currentPhysicsManager_.GetBody(entity1);
+        if (ballbody.position.x > rectShapeDim.x / 100 ||
+            ballbody.position.x < -rectShapeDim.x / 100)
+        {
+            auto playerone = gameManager_.Getentitymap();
+            auto playertwo = gameManager_.Getentitymap();
+            
+            core::LogDebug("hiting point");
+            playerCharacter.health--;
+
+        }
+        
+        currentPlayerManager_.SetComponent(entity2, playerCharacter);
     }
 
     void RollbackManager::SpawnBalle(PlayerNumber playerNumber, core::Entity entity, core::Vec2f position, core::Vec2f velocity)

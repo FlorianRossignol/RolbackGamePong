@@ -48,6 +48,10 @@ namespace game
         rollbackManager_.SetPlayerInput(playerNumber, playerInput, inputFrame);
 
     }
+    std::array<core::Entity, maxPlayerNmb> GameManager::Getentitymap()
+    {
+        return playerEntityMap_;
+    }
     void GameManager::Validate(Frame newValidateFrame)
     {
         if (rollbackManager_.GetCurrentFrame() < newValidateFrame)
@@ -350,6 +354,7 @@ namespace game
         {
             if (startingTime_ != 0)
             {
+               
                 using namespace std::chrono;
                 const auto ms = duration_cast<duration<unsigned long long, std::milli>>(
                     system_clock::now().time_since_epoch()
