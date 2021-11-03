@@ -11,9 +11,10 @@ namespace game
         gameManager_(gameManager), entityManager_(entityManager),
         currentTransformManager_(entityManager),
         currentPhysicsManager_(entityManager), currentPlayerManager_(entityManager, currentPhysicsManager_, gameManager_),
-        currentBallManager_(entityManager, gameManager,currentPhysicsManager_),
+        currentBallManager_(entityManager, gameManager,currentPhysicsManager_,currentPlayerManager_),
         lastValidatePhysicsManager_(entityManager),
-        lastValidatePlayerManager_(entityManager, lastValidatePhysicsManager_, gameManager_), lastValidateBulletManager_(entityManager, gameManager,lastValidatePhysicsManager_)
+        lastValidatePlayerManager_(entityManager, lastValidatePhysicsManager_, gameManager_), 
+        lastValidateBallManager_(entityManager, gameManager,lastValidatePhysicsManager_,lastValidatePlayerManager_)
     {
         for (auto& input : inputs_)
         {
@@ -45,7 +46,7 @@ namespace game
         }
         
         //Revert the current game state to the last validated game state
-        currentBallManager_.CopyAllComponents(lastValidateBulletManager_.GetAllComponents());
+        currentBallManager_.CopyAllComponents(lastValidateBallManager_.GetAllComponents());
         currentPhysicsManager_.CopyAllComponents(lastValidatePhysicsManager_);
         currentPlayerManager_.CopyAllComponents(lastValidatePlayerManager_.GetAllComponents());
 
@@ -158,7 +159,7 @@ namespace game
             }
         }
         //We use the current game state as the temporary new validate game state
-        currentBallManager_.CopyAllComponents(lastValidateBulletManager_.GetAllComponents());
+        currentBallManager_.CopyAllComponents(lastValidateBallManager_.GetAllComponents());
         currentPhysicsManager_.CopyAllComponents(lastValidatePhysicsManager_);
         currentPlayerManager_.CopyAllComponents(lastValidatePlayerManager_.GetAllComponents());
 
@@ -189,7 +190,7 @@ namespace game
             }
         }
         //Copy back the new validate game state to the last validated game state
-        lastValidateBulletManager_.CopyAllComponents(currentBallManager_.GetAllComponents());
+        lastValidateBallManager_.CopyAllComponents(currentBallManager_.GetAllComponents());
         
         lastValidatePlayerManager_.CopyAllComponents(currentPlayerManager_.GetAllComponents());
         lastValidatePhysicsManager_.CopyAllComponents(currentPhysicsManager_);
@@ -341,20 +342,8 @@ namespace game
             const auto& bullet = currentBallManager_.GetComponent(entity1);
             ManageCollision(player, entity2, bullet, entity1);
         }
-        auto playerCharacter = currentPlayerManager_.GetComponent(entity2);
-        auto ballbody = currentPhysicsManager_.GetBody(entity1);
-        if (ballbody.position.x > rectShapeDim.x / 100 ||
-            ballbody.position.x < -rectShapeDim.x / 100)
-        {
-            auto playerone = gameManager_.Getentitymap();
-            auto playertwo = gameManager_.Getentitymap();
-            
-            core::LogDebug("hiting point");
-            playerCharacter.health--;
-
-        }
         
-        currentPlayerManager_.SetComponent(entity2, playerCharacter);
+        
     }
 
     void RollbackManager::SpawnBalle(PlayerNumber playerNumber, core::Entity entity, core::Vec2f position, core::Vec2f velocity)
@@ -372,15 +361,15 @@ namespace game
         
         currentBallManager_.AddComponent(entity);
         currentBallManager_.SetComponent(entity, ball);
+
         currentPhysicsManager_.AddBody(entity);
         currentPhysicsManager_.SetBody(entity, ballbody);
         currentPhysicsManager_.AddBox(entity);
         currentPhysicsManager_.SetBox(entity, ballbox);
 
-        lastValidateBulletManager_.AddComponent(entity);
-        lastValidateBulletManager_.SetComponent(entity, ball);
-        
-
+        lastValidateBallManager_.AddComponent(entity);
+        lastValidateBallManager_.SetComponent(entity, ball);
+ 
         lastValidatePhysicsManager_.AddBody(entity);
         lastValidatePhysicsManager_.SetBody(entity, ballbody);
         lastValidatePhysicsManager_.AddBox(entity);

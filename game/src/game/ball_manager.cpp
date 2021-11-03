@@ -1,10 +1,12 @@
 #include <game/ball_manager.h>
-
+#include "game/pong_player_character.h"
 namespace game
 {
     BallManager::BallManager(core::EntityManager& entityManager, GameManager& gameManager,
-        PhysicsManager& physicsManager) :
-        ComponentManager(entityManager), gameManager_(gameManager), physicsManager_(physicsManager)
+        PhysicsManager& physicsManager,
+        PlayerCharacterManager& playerCharacterManager) :
+        ComponentManager(entityManager), gameManager_(gameManager), physicsManager_(physicsManager),
+        playerCharacterManager_(playerCharacterManager)
     {
     }
 
@@ -15,28 +17,30 @@ namespace game
         {
             if (entityManager_.HasComponent(entity, static_cast<core::EntityMask>(ComponentType::BALL)))
             {
-                /*auto& ball = components_[entity];
-                ball.remainingTime -= dt.asSeconds();
-                if (ball.remainingTime < 0.0f)
-                {
-                    entityManager_.DestroyEntity(entity);
-                }*/
+                
                 auto ball = physicsManager_.GetBody(entity);
                 
-                //ball.velocity = ball.velocity * dt.asSeconds() + ball.position;
+                auto player = playerCharacterManager_.GetComponent(entity);
+                auto playerone = gameManager_.GetEntityFromPlayerNumber(player.playerNumber);
+                auto playertwo = gameManager_.GetEntityFromPlayerNumber(player.playerNumber);
                 
-                if (ball.position.x > rectShapeDim.x / 100 ||
-                    ball.position.x < -rectShapeDim.x /100)
+               //if the player lost ball in right the first player lose hp 
+                if (ball.position.x > rectShapeDim.x / 100)
                 {
-                    //auto accel = core::Vec2f{ 0.1,0.1 };
-                    //ball.velocity = core::Vec2f{ -ball.velocity.x,ball.velocity.y }; //+ accel;
+                    
                     ball.position = core::Vec2f{0,0};
-                    //player.health--;
+                    
                 }
+                if (ball.position.x < -rectShapeDim.x / 100)
+                {
+                    ball.position = core::Vec2f{ 0,0 };
+                    
+                }
+                
                 if (ball.position.y > rectShapeDim.y / 100 ||
                     ball.position.y < -rectShapeDim.y /100)
                 {
-                    //auto accel = core::Vec2f{ 0.1,0.1 };
+                    /
                     ball.velocity = core::Vec2f{ ball.velocity.x,-ball.velocity.y };
                     
                 }

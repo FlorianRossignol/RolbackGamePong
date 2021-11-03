@@ -75,7 +75,7 @@ class GameManager;
         PhysicsManager lastValidatePhysicsManager_;
         
         PlayerCharacterManager lastValidatePlayerManager_;
-        BallManager lastValidateBulletManager_;
+        BallManager lastValidateBallManager_;
 
 
         Frame lastValidateFrame_ = 0; //Confirm frame

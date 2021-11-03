@@ -11,9 +11,8 @@ namespace game
 
     GameManager::GameManager() :
         transformManager_(entityManager_),
-        rollbackManager_(*this,entityManager_),
-        ballmanager_(entityManager_,*this,physicsManager_),
-        physicsManager_(entityManager_)
+        rollbackManager_(*this,entityManager_)
+       
     {
         playerEntityMap_.fill(core::EntityManager::INVALID_ENTITY);
     }
@@ -69,11 +68,7 @@ namespace game
         const core::Entity entity = entityManager_.CreateEntity();
         ballbody.velocity = core::Vec2f{ 1,1 };
       
-        ballmanager_.SetComponent(entity, ball);
-        physicsManager_.AddBody(entity);
-        physicsManager_.SetBody(entity, ballbody);
-        physicsManager_.AddBox(entity);
-        physicsManager_.SetBox(entity, ballbox);
+        
         transformManager_.AddComponent(entity);
         transformManager_.SetPosition(entity, position);
         transformManager_.SetScale(entity, ballNewScale * ballScale);
@@ -154,10 +149,7 @@ namespace game
         spriteManager_.AddComponent(bgEntity);
         spriteManager_.SetTexture(bgEntity, pongBg_);
         spriteManager_.SetOrigin(bgEntity, sf::Vector2f(pongBg_.getSize()) / 2.0f);
-        physicsManager_.AddBody(bgEntity);
-        physicsManager_.SetBody(bgEntity, bgbody);
-        physicsManager_.AddBox(bgEntity);
-        physicsManager_.SetBox(bgEntity, bgbox);
+        
         pongBackground_.Init();
     }
 
