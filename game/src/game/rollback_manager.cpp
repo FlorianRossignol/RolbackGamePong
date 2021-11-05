@@ -257,8 +257,8 @@ namespace game
         
         
         Box playerBox;
-        PlayerCharacter playerchar;
-        playerBox.extends = core::Vec2f::one() * playerchar.playerHalfScale /5;
+        PlayerCharacter playerChara;
+        playerBox.extends = core::Vec2f{ 10,18 } / core::pixelPerMeter * playerChara.playerScale;
         //playerBox.extends = core::Vec2f::one() / playerchar.playerScale;
 
         PlayerCharacter playerCharacter;
@@ -356,7 +356,7 @@ namespace game
         ballbody.position = position;
         
         createdEntities_.push_back({ entity, testedFrame_ });
-        
+        ballbox.extends = core::Vec2f{ 16,16 } / core::pixelPerMeter / 2;
         ballbody.velocity = core::Vec2f{ 1,1 };
 
         
