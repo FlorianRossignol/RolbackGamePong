@@ -350,31 +350,31 @@ namespace game
     void RollbackManager::SpawnBalle(PlayerNumber playerNumber, core::Entity entity, core::Vec2f position, core::Vec2f velocity)
     {
         Ball ball;
-        Box ballbox;
-        Body ballbody;
+        Box ballBox;
+        Body ballBody;
         
-        ballbody.position = position;
+        ballBody.position = position;
         
         createdEntities_.push_back({ entity, testedFrame_ });
-        ballbox.extends = core::Vec2f{ 16,16 } / core::pixelPerMeter / 2;
-        ballbody.velocity = core::Vec2f{ 1,1 };
+        ballBox.extends = core::Vec2f{ 16,16 } / core::pixelPerMeter / 2;
+        ballBody.velocity = core::Vec2f{ 1,1 };
 
         
         currentBallManager_.AddComponent(entity);
         currentBallManager_.SetComponent(entity, ball);
 
         currentPhysicsManager_.AddBody(entity);
-        currentPhysicsManager_.SetBody(entity, ballbody);
+        currentPhysicsManager_.SetBody(entity, ballBody);
         currentPhysicsManager_.AddBox(entity);
-        currentPhysicsManager_.SetBox(entity, ballbox);
+        currentPhysicsManager_.SetBox(entity, ballBox);
 
         lastValidateBallManager_.AddComponent(entity);
         lastValidateBallManager_.SetComponent(entity, ball);
  
         lastValidatePhysicsManager_.AddBody(entity);
-        lastValidatePhysicsManager_.SetBody(entity, ballbody);
+        lastValidatePhysicsManager_.SetBody(entity, ballBody);
         lastValidatePhysicsManager_.AddBox(entity);
-        lastValidatePhysicsManager_.SetBox(entity, ballbox);
+        lastValidatePhysicsManager_.SetBox(entity, ballBox);
 
 
         currentTransformManager_.AddComponent(entity);
