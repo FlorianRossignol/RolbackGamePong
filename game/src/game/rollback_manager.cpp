@@ -254,11 +254,12 @@ namespace game
     {
         Body playerBody;
         playerBody.position = position;
-        //playerBody.rotation = rotation;
+        
         
         Box playerBox;
         PlayerCharacter playerchar;
         playerBox.extends = core::Vec2f::one() * playerchar.playerHalfScale /5;
+        //playerBox.extends = core::Vec2f::one() / playerchar.playerScale;
 
         PlayerCharacter playerCharacter;
         playerCharacter.playerNumber = playerNumber;

@@ -26,15 +26,15 @@ namespace game
             const bool down = input & PlayerInputEnum::PlayerInput::DOWN;
 
             auto dir = core::Vec2f::up();
-            //dir = dir.Rotate(-(playerBody.rotation + playerBody.angularVelocity * dt.asSeconds()));
+           
 
-            const auto acceleration = ((down ? -1.0f : 0.0f) + (up ? 1.0f : 0.0f)) *dir;
+            const auto acceleration = ((down ? -1.0f : 0.0f) + (up ? 1.0f : 0.0f)) * dir;
             
 
             playerBody.velocity += acceleration * dt.asSeconds();
-            if ((playerBody.position.y > rectShapeDim.y / 100 &&
+            if ((playerBody.position.y > rectShapeDim.y / 90 /1.5 &&
                 playerBody.velocity.y > 0)
-                || ( playerBody.velocity.y < 0 && playerBody.position.y < -rectShapeDim.y /100))
+                || ( playerBody.velocity.y < 0 && playerBody.position.y < -rectShapeDim.y /90 /1.5))
             {
                 playerBody.velocity = core::Vec2f{ 0,0 };
             }
