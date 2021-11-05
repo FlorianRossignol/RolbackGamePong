@@ -18,13 +18,13 @@ namespace game
 
     const std::uint32_t maxPlayerNmb = 2;
     const short playerHealth = 5;
-    //const float playerSpeed = 1.0f;
+   
     const core::degree_t playerAngularSpeed = core::degree_t(90.0f);
     const float playerShootingPeriod = 0.3f;
     const float balloriginalspeed = 2.0f;
     const float ballScale = 0.5f;
     const core::Vec2f ballNewScale = {5,5};
-    //using pixelpermeter
+    
    
     const core::Vec2f rectShapeDim = { 1000 /2,600 /2.0f};
     const float bulletPeriod = 3.0f;
@@ -77,9 +77,6 @@ namespace game
             NONE = 0u,
             UP = 1u << 0u,
             DOWN = 1u << 1u,
-            //LEFT = 1u << 2u,
-            //RIGHT = 1u << 3u,
-            //SHOOT = 1u << 4u,
         };
     }
 }

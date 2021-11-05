@@ -21,17 +21,11 @@ namespace game
                 
                auto ball = physicsManager_.GetBody(entity);
                 
-               
-                
-               
-               
-               //core::Vec2f vit = {1,-1};
                //if the player lost ball in right the first player lose hp 
                 if (ball.position.x > rectShapeDim.x / 100)
                 {
                     auto firstPlayerEntity = gameManager_.GetEntityFromPlayerNumber(0);
                     ball.position = core::Vec2f{0,0};
-                    //vit = { 0, 0 };
                     auto player = playerCharacterManager_.GetComponent(firstPlayerEntity);
                     player.health--;
                     playerCharacterManager_.SetComponent(firstPlayerEntity,player);
@@ -40,7 +34,7 @@ namespace game
                 {
                    
                     ball.position = core::Vec2f{ 0,0 };
-                    //vit = { 0, 0 };
+                   
                     auto secondPlayerEntity = gameManager_.GetEntityFromPlayerNumber(1);
                     auto player = playerCharacterManager_.GetComponent(secondPlayerEntity);
                     
@@ -52,11 +46,11 @@ namespace game
                     ball.position.y < -rectShapeDim.y /100)
                 {
                     
-                    ball.velocity = core::Vec2f{ ball.velocity.x,-ball.velocity.y }; //+ vit ;
+                    ball.velocity = core::Vec2f{ ball.velocity.x,-ball.velocity.y }; 
                     
                 }
                 physicsManager_.SetBody(entity, ball);
-                //std::cout << ball.position.x;
+              
             }
         }
     }
