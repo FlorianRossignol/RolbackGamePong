@@ -81,7 +81,7 @@ namespace game
                 continue;
             const auto& body = currentPhysicsManager_.GetBody(entity);
             currentTransformManager_.SetPosition(entity, body.position);
-            //currentTransformManager_.SetRotation(entity, body.rotation);
+            
         }
     }
     void RollbackManager::SetPlayerInput(PlayerNumber playerNumber, PlayerInput playerInput, std::uint32_t inputFrame)
@@ -234,18 +234,16 @@ namespace game
             state += velocityPtr[i];
         }
         //Adding rotation
-        //const auto angle = playerBody.rotation.value();
-        //const auto* anglePtr = reinterpret_cast<const PhysicsState*>(&angle);
+       
         for (size_t i = 0; i < sizeof(float) / sizeof(PhysicsState); i++)
         {
             //state += anglePtr[i];
         }
         //Adding angular Velocity
-        //const auto angularVelocity = playerBody.angularVelocity.value();
-        //const auto* angularVelPtr = reinterpret_cast<const PhysicsState*>(&angularVelocity);
+        
         for (size_t i = 0; i < sizeof(float) / sizeof(PhysicsState); i++)
         {
-           // state += angularVelPtr[i];
+           
         }
         return state;
     }
@@ -259,7 +257,7 @@ namespace game
         Box playerBox;
         PlayerCharacter playerChara;
         playerBox.extends = core::Vec2f{ 10,18 } / core::pixelPerMeter * playerChara.playerScale;
-        //playerBox.extends = core::Vec2f::one() / playerchar.playerScale;
+        
 
         PlayerCharacter playerCharacter;
         playerCharacter.playerNumber = playerNumber;
@@ -310,18 +308,10 @@ namespace game
                 ballbody.velocity = core::Vec2f{ abs(ballbody.velocity.x),ballbody.velocity.y };
             }
             currentPhysicsManager_.SetBody(ballEntity, ballbody);
-            //if (player.playerNumber != ball.playerNumber)
+           
             {
                 
-                //lower health point
-                /*auto playerCharacter = currentPlayerManager_.GetComponent(playerEntity);
-                if (playerCharacter.invincibilityTime <= 0.0f)
-                {
-                    core::LogDebug(fmt::format("Player {} is hit by bullet", playerCharacter.playerNumber));
-                    //playerCharacter.health--;
-                    playerCharacter.invincibilityTime = playerInvincibilityPeriod;
-                }
-                currentPlayerManager_.SetComponent(playerEntity, playerCharacter);*/
+                
             }
            
             
@@ -386,15 +376,6 @@ namespace game
 
     void RollbackManager::DestroyEntity(core::Entity entity)
     {
-        //we don't need to save a bullet that has been created in the time window
-        /*if (std::find_if(createdEntities_.begin(), createdEntities_.end(), [entity](auto newEntity)
-            {
-                return newEntity.entity == entity;
-            }) != createdEntities_.end())
-        {
-            entityManager_.DestroyEntity(entity);
-            return;
-        }
-        entityManager_.AddComponent(entity, static_cast<core::EntityMask>(ComponentType::DESTROYED));*/
+        
     }
 }

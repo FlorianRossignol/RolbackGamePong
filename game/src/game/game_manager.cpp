@@ -218,11 +218,10 @@ namespace game
         UpdateCameraView();
         target.setView(cameraView_);
 
-        //pongBackground_.Draw(target);
+        
         
         spriteManager_.Draw(target);
-        //spriteManager_.Draw(pongRectangle);
-        // Draw texts on screen
+        
         target.setView(originalView_);
         if (state_ & FINISHED)
         {
